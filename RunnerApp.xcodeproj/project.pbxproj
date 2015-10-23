@@ -14,6 +14,33 @@
 		442B75491BAA5F3D00FF4E0E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 442B75481BAA5F3D00FF4E0E /* Images.xcassets */; };
 		442B754C1BAA5F3D00FF4E0E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 442B754A1BAA5F3D00FF4E0E /* LaunchScreen.xib */; };
 		442B75581BAA5F3D00FF4E0E /* RunnerAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442B75571BAA5F3D00FF4E0E /* RunnerAppTests.swift */; };
+		442B75621BAA6B0600FF4E0E /* running-logo-vector-illustration-35971018.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 442B75611BAA6B0600FF4E0E /* running-logo-vector-illustration-35971018.jpg */; };
+		442B75641BAA6F1D00FF4E0E /* lines_repeat_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 442B75631BAA6F1C00FF4E0E /* lines_repeat_bg.png */; };
+		442B75661BAA721300FF4E0E /* dropdown_repeat_bg_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 442B75651BAA721300FF4E0E /* dropdown_repeat_bg_blue.png */; };
+		442B756E1BAA79CF00FF4E0E /* MemberDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442B756D1BAA79CF00FF4E0E /* MemberDetailCell.swift */; };
+		4495D2CE1BB64889005D5662 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 4495D2C51BB64889005D5662 /* NSObject+SBJSON.m */; };
+		4495D2CF1BB64889005D5662 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 4495D2C71BB64889005D5662 /* NSString+SBJSON.m */; };
+		4495D2D01BB64889005D5662 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4495D2C91BB64889005D5662 /* SBJsonBase.m */; };
+		4495D2D11BB64889005D5662 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4495D2CB1BB64889005D5662 /* SBJsonParser.m */; };
+		4495D2D21BB64889005D5662 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4495D2CD1BB64889005D5662 /* SBJsonWriter.m */; };
+		4495D2DA1BB64A20005D5662 /* JsonParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4495D2D81BB64A20005D5662 /* JsonParsing.swift */; };
+		4495D2DB1BB64A20005D5662 /* JsonParsing.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4495D2D91BB64A20005D5662 /* JsonParsing.xib */; };
+		4495D2E11BB65A19005D5662 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4495D2E01BB65A19005D5662 /* SignIn.swift */; };
+		4495D2E51BB6653B005D5662 /* CustomActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4495D2E41BB6653B005D5662 /* CustomActivityIndicatorView.swift */; };
+		4495D2E71BB66589005D5662 /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 4495D2E61BB66589005D5662 /* loading.png */; };
+		4495D2E91BB67B0B005D5662 /* SignUpFirst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4495D2E81BB67B0B005D5662 /* SignUpFirst.swift */; };
+		4495D2EB1BB67B27005D5662 /* SignUpSecond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4495D2EA1BB67B27005D5662 /* SignUpSecond.swift */; };
+		4495D2EF1BB6A06B005D5662 /* SelectRunnerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4495D2EE1BB6A06B005D5662 /* SelectRunnerVC.swift */; };
+		4495D2F11BB70ED0005D5662 /* StartRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4495D2F01BB70ED0005D5662 /* StartRun.swift */; };
+		44BF4D991BBEE35000914056 /* EditRunnerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BF4D981BBEE35000914056 /* EditRunnerVC.swift */; };
+		44C1832F1BB9889800A2AEE0 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C1832E1BB9889800A2AEE0 /* Constant.swift */; };
+		44C183311BB98C4800A2AEE0 /* OtherGlobalConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C183301BB98C4800A2AEE0 /* OtherGlobalConstant.swift */; };
+		44C404EC1BBE568B0079F5C0 /* RunLapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C404EB1BBE568B0079F5C0 /* RunLapCell.swift */; };
+		44C404EE1BBE8DDE0079F5C0 /* RunnerStatsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C404ED1BBE8DDE0079F5C0 /* RunnerStatsCell.swift */; };
+		44C404F01BBE91310079F5C0 /* RunnerStatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C404EF1BBE91310079F5C0 /* RunnerStatsVC.swift */; };
+		44C5028B1BB7A735002ABF83 /* AddRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C5028A1BB7A735002ABF83 /* AddRunner.swift */; };
+		44C502911BB83CB7002ABF83 /* RunLapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C502901BB83CB7002ABF83 /* RunLapVC.swift */; };
+		EAE961251BB0FFD7009E373E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE961241BB0FFD7009E373E /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +65,40 @@
 		442B75511BAA5F3D00FF4E0E /* RunnerAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunnerAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		442B75561BAA5F3D00FF4E0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		442B75571BAA5F3D00FF4E0E /* RunnerAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerAppTests.swift; sourceTree = "<group>"; };
+		442B75611BAA6B0600FF4E0E /* running-logo-vector-illustration-35971018.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "running-logo-vector-illustration-35971018.jpg"; path = "RunnerApp/running-logo-vector-illustration-35971018.jpg"; sourceTree = "<group>"; };
+		442B75631BAA6F1C00FF4E0E /* lines_repeat_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lines_repeat_bg.png; path = RunnerApp/lines_repeat_bg.png; sourceTree = "<group>"; };
+		442B75651BAA721300FF4E0E /* dropdown_repeat_bg_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dropdown_repeat_bg_blue.png; path = RunnerApp/dropdown_repeat_bg_blue.png; sourceTree = "<group>"; };
+		442B756D1BAA79CF00FF4E0E /* MemberDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberDetailCell.swift; sourceTree = "<group>"; };
+		4495D2C21BB64889005D5662 /* RunnerApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RunnerApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		4495D2C31BB64889005D5662 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		4495D2C41BB64889005D5662 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
+		4495D2C51BB64889005D5662 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
+		4495D2C61BB64889005D5662 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
+		4495D2C71BB64889005D5662 /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
+		4495D2C81BB64889005D5662 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
+		4495D2C91BB64889005D5662 /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
+		4495D2CA1BB64889005D5662 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		4495D2CB1BB64889005D5662 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		4495D2CC1BB64889005D5662 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		4495D2CD1BB64889005D5662 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		4495D2D81BB64A20005D5662 /* JsonParsing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonParsing.swift; sourceTree = "<group>"; };
+		4495D2D91BB64A20005D5662 /* JsonParsing.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JsonParsing.xib; sourceTree = "<group>"; };
+		4495D2E01BB65A19005D5662 /* SignIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
+		4495D2E41BB6653B005D5662 /* CustomActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomActivityIndicatorView.swift; sourceTree = "<group>"; };
+		4495D2E61BB66589005D5662 /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
+		4495D2E81BB67B0B005D5662 /* SignUpFirst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpFirst.swift; sourceTree = "<group>"; };
+		4495D2EA1BB67B27005D5662 /* SignUpSecond.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpSecond.swift; sourceTree = "<group>"; };
+		4495D2EE1BB6A06B005D5662 /* SelectRunnerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectRunnerVC.swift; sourceTree = "<group>"; };
+		4495D2F01BB70ED0005D5662 /* StartRun.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartRun.swift; sourceTree = "<group>"; };
+		44BF4D981BBEE35000914056 /* EditRunnerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRunnerVC.swift; sourceTree = "<group>"; };
+		44C1832E1BB9889800A2AEE0 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constant.swift; path = ../Constant.swift; sourceTree = "<group>"; };
+		44C183301BB98C4800A2AEE0 /* OtherGlobalConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OtherGlobalConstant.swift; path = ../OtherGlobalConstant.swift; sourceTree = "<group>"; };
+		44C404EB1BBE568B0079F5C0 /* RunLapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunLapCell.swift; sourceTree = "<group>"; };
+		44C404ED1BBE8DDE0079F5C0 /* RunnerStatsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunnerStatsCell.swift; sourceTree = "<group>"; };
+		44C404EF1BBE91310079F5C0 /* RunnerStatsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunnerStatsVC.swift; sourceTree = "<group>"; };
+		44C5028A1BB7A735002ABF83 /* AddRunner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRunner.swift; sourceTree = "<group>"; };
+		44C502901BB83CB7002ABF83 /* RunLapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunLapVC.swift; sourceTree = "<group>"; };
+		EAE961241BB0FFD7009E373E /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,9 +122,15 @@
 		442B75301BAA5F3D00FF4E0E = {
 			isa = PBXGroup;
 			children = (
-				442B753B1BAA5F3D00FF4E0E /* RunnerApp */,
+				4495D2E61BB66589005D5662 /* loading.png */,
+				4495D2E41BB6653B005D5662 /* CustomActivityIndicatorView.swift */,
+				4495D2DD1BB65755005D5662 /* Images */,
+				4495D2DC1BB653F3005D5662 /* Custom Files */,
+				4495D2D31BB64890005D5662 /* Json Files */,
 				442B75541BAA5F3D00FF4E0E /* RunnerAppTests */,
+				442B753B1BAA5F3D00FF4E0E /* RunnerApp */,
 				442B753A1BAA5F3D00FF4E0E /* Products */,
+				4495D2C21BB64889005D5662 /* RunnerApp-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,6 +146,8 @@
 		442B753B1BAA5F3D00FF4E0E /* RunnerApp */ = {
 			isa = PBXGroup;
 			children = (
+				44C183301BB98C4800A2AEE0 /* OtherGlobalConstant.swift */,
+				44C1832E1BB9889800A2AEE0 /* Constant.swift */,
 				442B753E1BAA5F3D00FF4E0E /* AppDelegate.swift */,
 				442B75431BAA5F3D00FF4E0E /* ViewController.swift */,
 				442B75451BAA5F3D00FF4E0E /* Main.storyboard */,
@@ -113,6 +182,56 @@
 				442B75561BAA5F3D00FF4E0E /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4495D2D31BB64890005D5662 /* Json Files */ = {
+			isa = PBXGroup;
+			children = (
+				4495D2D81BB64A20005D5662 /* JsonParsing.swift */,
+				4495D2D91BB64A20005D5662 /* JsonParsing.xib */,
+				4495D2C31BB64889005D5662 /* JSON.h */,
+				4495D2C41BB64889005D5662 /* NSObject+SBJSON.h */,
+				4495D2C51BB64889005D5662 /* NSObject+SBJSON.m */,
+				4495D2C61BB64889005D5662 /* NSString+SBJSON.h */,
+				4495D2C71BB64889005D5662 /* NSString+SBJSON.m */,
+				4495D2C81BB64889005D5662 /* SBJsonBase.h */,
+				4495D2C91BB64889005D5662 /* SBJsonBase.m */,
+				4495D2CA1BB64889005D5662 /* SBJsonParser.h */,
+				4495D2CB1BB64889005D5662 /* SBJsonParser.m */,
+				4495D2CC1BB64889005D5662 /* SBJsonWriter.h */,
+				4495D2CD1BB64889005D5662 /* SBJsonWriter.m */,
+			);
+			name = "Json Files";
+			sourceTree = "<group>";
+		};
+		4495D2DC1BB653F3005D5662 /* Custom Files */ = {
+			isa = PBXGroup;
+			children = (
+				44BF4D981BBEE35000914056 /* EditRunnerVC.swift */,
+				44C404EF1BBE91310079F5C0 /* RunnerStatsVC.swift */,
+				44C502901BB83CB7002ABF83 /* RunLapVC.swift */,
+				44C5028A1BB7A735002ABF83 /* AddRunner.swift */,
+				4495D2F01BB70ED0005D5662 /* StartRun.swift */,
+				4495D2EE1BB6A06B005D5662 /* SelectRunnerVC.swift */,
+				4495D2EA1BB67B27005D5662 /* SignUpSecond.swift */,
+				4495D2E81BB67B0B005D5662 /* SignUpFirst.swift */,
+				4495D2E01BB65A19005D5662 /* SignIn.swift */,
+				EAE961241BB0FFD7009E373E /* DetailViewController.swift */,
+				442B756D1BAA79CF00FF4E0E /* MemberDetailCell.swift */,
+				44C404EB1BBE568B0079F5C0 /* RunLapCell.swift */,
+				44C404ED1BBE8DDE0079F5C0 /* RunnerStatsCell.swift */,
+			);
+			name = "Custom Files";
+			sourceTree = "<group>";
+		};
+		4495D2DD1BB65755005D5662 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				442B75651BAA721300FF4E0E /* dropdown_repeat_bg_blue.png */,
+				442B75631BAA6F1C00FF4E0E /* lines_repeat_bg.png */,
+				442B75611BAA6B0600FF4E0E /* running-logo-vector-illustration-35971018.jpg */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,6 +278,8 @@
 		442B75311BAA5F3D00FF4E0E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Tarun Sachdeva";
 				TargetAttributes = {
@@ -196,8 +317,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				442B75471BAA5F3D00FF4E0E /* Main.storyboard in Resources */,
+				442B75621BAA6B0600FF4E0E /* running-logo-vector-illustration-35971018.jpg in Resources */,
 				442B754C1BAA5F3D00FF4E0E /* LaunchScreen.xib in Resources */,
+				442B75641BAA6F1D00FF4E0E /* lines_repeat_bg.png in Resources */,
+				4495D2E71BB66589005D5662 /* loading.png in Resources */,
+				442B75661BAA721300FF4E0E /* dropdown_repeat_bg_blue.png in Resources */,
 				442B75491BAA5F3D00FF4E0E /* Images.xcassets in Resources */,
+				4495D2DB1BB64A20005D5662 /* JsonParsing.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,9 +341,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				442B756E1BAA79CF00FF4E0E /* MemberDetailCell.swift in Sources */,
+				4495D2D21BB64889005D5662 /* SBJsonWriter.m in Sources */,
+				4495D2F11BB70ED0005D5662 /* StartRun.swift in Sources */,
+				4495D2E91BB67B0B005D5662 /* SignUpFirst.swift in Sources */,
+				44C502911BB83CB7002ABF83 /* RunLapVC.swift in Sources */,
+				4495D2EF1BB6A06B005D5662 /* SelectRunnerVC.swift in Sources */,
+				4495D2DA1BB64A20005D5662 /* JsonParsing.swift in Sources */,
+				44BF4D991BBEE35000914056 /* EditRunnerVC.swift in Sources */,
+				4495D2E51BB6653B005D5662 /* CustomActivityIndicatorView.swift in Sources */,
+				44C404F01BBE91310079F5C0 /* RunnerStatsVC.swift in Sources */,
+				4495D2D01BB64889005D5662 /* SBJsonBase.m in Sources */,
+				44C404EE1BBE8DDE0079F5C0 /* RunnerStatsCell.swift in Sources */,
 				442B75441BAA5F3D00FF4E0E /* ViewController.swift in Sources */,
+				EAE961251BB0FFD7009E373E /* DetailViewController.swift in Sources */,
 				442B753F1BAA5F3D00FF4E0E /* AppDelegate.swift in Sources */,
+				4495D2E11BB65A19005D5662 /* SignIn.swift in Sources */,
+				44C1832F1BB9889800A2AEE0 /* Constant.swift in Sources */,
+				44C183311BB98C4800A2AEE0 /* OtherGlobalConstant.swift in Sources */,
+				4495D2CE1BB64889005D5662 /* NSObject+SBJSON.m in Sources */,
+				4495D2D11BB64889005D5662 /* SBJsonParser.m in Sources */,
+				4495D2EB1BB67B27005D5662 /* SignUpSecond.swift in Sources */,
+				4495D2CF1BB64889005D5662 /* NSString+SBJSON.m in Sources */,
 				442B75421BAA5F3D00FF4E0E /* RunnerApp.xcdatamodeld in Sources */,
+				44C5028B1BB7A735002ABF83 /* AddRunner.swift in Sources */,
+				44C404EC1BBE568B0079F5C0 /* RunLapCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,9 +490,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = RunnerApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RunnerApp-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -352,9 +503,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = RunnerApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RunnerApp-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -411,6 +564,7 @@
 				442B755D1BAA5F3D00FF4E0E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		442B755E1BAA5F3D00FF4E0E /* Build configuration list for PBXNativeTarget "RunnerAppTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +573,7 @@
 				442B75601BAA5F3D00FF4E0E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
