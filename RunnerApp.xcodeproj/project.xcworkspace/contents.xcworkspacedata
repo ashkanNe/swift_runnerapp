@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:RunnerApp.xcodeproj">
+      location = "self:/Users/user113533/Documents/swift_runnerapp/RunnerApp.xcodeproj">
    </FileRef>
 </Workspace>

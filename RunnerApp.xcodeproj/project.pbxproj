@@ -54,7 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		442B75391BAA5F3D00FF4E0E /* RunnerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunnerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		442B75391BAA5F3D00FF4E0E /* RunnerApp.temp_caseinsensitive_rename.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunnerApp.temp_caseinsensitive_rename.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		442B753D1BAA5F3D00FF4E0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		442B753E1BAA5F3D00FF4E0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		442B75411BAA5F3D00FF4E0E /* RunnerApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RunnerApp.xcdatamodel; sourceTree = "<group>"; };
@@ -62,7 +62,7 @@
 		442B75461BAA5F3D00FF4E0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		442B75481BAA5F3D00FF4E0E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		442B754B1BAA5F3D00FF4E0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		442B75511BAA5F3D00FF4E0E /* RunnerAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunnerAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		442B75511BAA5F3D00FF4E0E /* RunnerApp.temp_caseinsensitive_rename.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunnerApp.temp_caseinsensitive_rename.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		442B75561BAA5F3D00FF4E0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		442B75571BAA5F3D00FF4E0E /* RunnerAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerAppTests.swift; sourceTree = "<group>"; };
 		442B75611BAA6B0600FF4E0E /* running-logo-vector-illustration-35971018.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "running-logo-vector-illustration-35971018.jpg"; path = "RunnerApp/running-logo-vector-illustration-35971018.jpg"; sourceTree = "<group>"; };
@@ -137,8 +137,8 @@
 		442B753A1BAA5F3D00FF4E0E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				442B75391BAA5F3D00FF4E0E /* RunnerApp.app */,
-				442B75511BAA5F3D00FF4E0E /* RunnerAppTests.xctest */,
+				442B75391BAA5F3D00FF4E0E /* RunnerApp.temp_caseinsensitive_rename.app */,
+				442B75511BAA5F3D00FF4E0E /* RunnerApp.temp_caseinsensitive_rename.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -251,7 +251,7 @@
 			);
 			name = RunnerApp;
 			productName = RunnerApp;
-			productReference = 442B75391BAA5F3D00FF4E0E /* RunnerApp.app */;
+			productReference = 442B75391BAA5F3D00FF4E0E /* RunnerApp.temp_caseinsensitive_rename.app */;
 			productType = "com.apple.product-type.application";
 		};
 		442B75501BAA5F3D00FF4E0E /* RunnerAppTests */ = {
@@ -269,7 +269,7 @@
 			);
 			name = RunnerAppTests;
 			productName = RunnerAppTests;
-			productReference = 442B75511BAA5F3D00FF4E0E /* RunnerAppTests.xctest */;
+			productReference = 442B75511BAA5F3D00FF4E0E /* RunnerApp.temp_caseinsensitive_rename.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -281,7 +281,7 @@
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0710;
-				ORGANIZATIONNAME = "Tarun Sachdeva";
+				ORGANIZATIONNAME = PresWorld;
 				TargetAttributes = {
 					442B75381BAA5F3D00FF4E0E = {
 						CreatedOnToolsVersion = 6.0;
@@ -495,7 +495,7 @@
 				INFOPLIST_FILE = RunnerApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Tsss.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = RunnerApp.temp_caseinsensitive_rename;
 				SWIFT_OBJC_BRIDGING_HEADER = "RunnerApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -509,7 +509,7 @@
 				INFOPLIST_FILE = RunnerApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Tsss.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = RunnerApp.temp_caseinsensitive_rename;
 				SWIFT_OBJC_BRIDGING_HEADER = "RunnerApp-Bridging-Header.h";
 			};
 			name = Release;
@@ -529,8 +529,8 @@
 				INFOPLIST_FILE = RunnerAppTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Tsss.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RunnerApp.app/RunnerApp";
+				PRODUCT_NAME = RunnerApp.temp_caseinsensitive_rename;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RunnerApp.temp_caseinsensitive_rename.app/RunnerApp.temp_caseinsensitive_rename";
 			};
 			name = Debug;
 		};
@@ -545,8 +545,8 @@
 				INFOPLIST_FILE = RunnerAppTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Tsss.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RunnerApp.app/RunnerApp";
+				PRODUCT_NAME = RunnerApp.temp_caseinsensitive_rename;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RunnerApp.temp_caseinsensitive_rename.app/RunnerApp.temp_caseinsensitive_rename";
 			};
 			name = Release;
 		};
