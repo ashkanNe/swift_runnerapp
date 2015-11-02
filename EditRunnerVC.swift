@@ -275,7 +275,7 @@ class EditRunnerVC: UIViewController,JsonDelegete {
         }
     }
     
-   /** This is the Delegete Method of NSURLConnection Class,and get called when we there is some problem in data receiving */
+   /** This is the Delegete Method of NSURLConnection Class,and get called when there is some problem in data receiving */
     func connectionInterruption(){
         
     }
