@@ -1,8 +1,8 @@
 /**
 ￼@class RunnerStatsVC.swift
-￼@brief This file is used to show statstics of the Runners.
-@discussion We get all the data from API and then show the data on UICollectionView.
-@author Prescott | Neshagaran
+This file is used to show statstics of the runners.
+We get all the data from API and then show the data on UICollectionView.
+Prescott | Neshagaran
 @Copyright (c) 2015 Prescott | Neshagaran. All rights reserved.
 */
 
@@ -10,7 +10,7 @@ import UIKit
 
 class RunnerStatsVC: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate {
     
-    /** This is the UICollectionView Object which used to display information of Run */
+    /** This is the UICollectionView Object which is used to display information of Run */
     @IBOutlet var runnerStatCV : UICollectionView!
     
     /** This is the NSMutableArray Object which holds the information of different Run */
