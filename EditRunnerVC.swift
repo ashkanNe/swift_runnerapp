@@ -155,7 +155,7 @@ class EditRunnerVC: UIViewController,JsonDelegete {
   /** This method is called when timer completes and to hide the error label  */
     func update()
     {
-        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {                       //Hide the message Label
+        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {                       //Hides the message Label
             self.msgLblShow.alpha = 0.0
             self.timer.invalidate()
             self.view.userInteractionEnabled = true
@@ -258,7 +258,7 @@ class EditRunnerVC: UIViewController,JsonDelegete {
  
     
      //MARK:- NSURLConnection Delegete Methods
-    /** This is the Delegete Method of NSURLConnection Class,and get called when we receive response of API */
+    /** This is the Delegete Method of NSURLConnection Class,and gets called when we receive response of API */
     func dataFound(){
         
         let isSuccess : Int = 1
