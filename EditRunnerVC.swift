@@ -1,8 +1,6 @@
 /**
 ￼@class EditRunnerVC.swift
-￼@brief This file is used to Make change in the existing information of particular Runner.
-@discussion Firstly User make change in any existing infromation of Runner and then press Save Change button to update the information on Server.
-@author Prescott | Neshagaran
+This file is used to Make change in the existing information of particular Runner.
 @Copyright (c) 2015 Prescott | Neshagaran. All rights reserved.
 */
 
