@@ -1,8 +1,8 @@
 /**
 ￼@class RunLapVC.swift
-￼@brief This file is used to Count the time each runner takes to complete the run.
-@discussion We have a list of Runners who take part in run.We tap on "Tap To Start" button to start time.When a Runner completes its run,tap on particular runner name,his/her time will be recorded.And after all runner completes the press "Save Record" button to save data on Server.
-@author Prescott | Neshagaran
+￼This file is used to count the time each runner takes to complete the run.
+We have a list of Runners who take part in run. We tap on the "Tap To Start" button to start the time. When a Runner completes his or her run, tap on particular runner name, his or her time will be recorded. After all runners complete the run, press "Save Record" button to save data on Server.
+Prescott | Neshagaran
 @Copyright (c) 2015 Prescott | Neshagaran. All rights reserved.
 */
 
