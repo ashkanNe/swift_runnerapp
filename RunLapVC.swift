@@ -10,7 +10,7 @@ import UIKit
 
 class RunLapVC: UIViewController,JsonDelegete {
     
-    /** This is the NSMutableArray Object which holds the list of all Runner who take part in Run */
+    /** This is the NSMutableArray Object which holds the list of all runners who take part in the Run */
     var runnerListArray: NSMutableArray = NSMutableArray()
     
    /** This is the NSMutableDictionary Object which holds the information about the Run */
@@ -168,7 +168,7 @@ class RunLapVC: UIViewController,JsonDelegete {
         
         for (var i = 0 ; i < runnerListArray.count ; i++ )
         {
-            //Get each runner time taken in run.
+            //Gets each runner time taken in run.
             let indexPath: NSIndexPath = NSIndexPath(forRow: i, inSection: 0)
             let cell = runStartTblView.cellForRowAtIndexPath(indexPath)! as! RunLapCell
             let runnnerDetail = NSMutableDictionary()
@@ -231,7 +231,7 @@ class RunLapVC: UIViewController,JsonDelegete {
     
     
     //MARK:- NSURLConnection Delegete Methods
-    /** This is the Delegete Method of NSURLConnection Class,and get called when we receive response of API */
+    /** This is the Delegete Method of NSURLConnection Class, and gets called when we receive response of API */
     func dataFound(){
         
         let isSuccess : Int = 1
