@@ -1,10 +1,10 @@
-//
-//  DetailViewController.swift
-//  RunnerApp
-//
-//  Created by Vikas on 22/09/15.
-//  Copyright (c) 2015 Steven Prescott. All rights reserved.
-//
+/**
+￼@class DetailViewController.swift
+￼@brief This file is used to all Runners list along with their Alias.
+@discussion We call an API to get updated list of all Runners and show in a UITableView
+@author Prescott | Neshagaran
+@Copyright (c) 2015 Prescott | Neshagaran. All rights reserved.
+*/
 
 import UIKit
 
@@ -12,12 +12,16 @@ class DetailViewController: UIViewController,JsonDelegete {
     
      @IBOutlet var memberDetailTblView : UITableView!
      @IBOutlet var addRunnerBtn : UIButton!
+    
+     /** This is the Object of NSMutableArray which is used to hold list of all Runners. */
      var memberDetailArray:NSMutableArray = NSMutableArray()
-    var dataToSend = NSString()
-    let jsonParsing = JsonParsing(nibName:"JsonParsing.swift", bundle: nil)
-    var dataFetchingCase : Int = -1
     
+     /** This is the Object of JsonParsing Class which is used to Call API. */
+     let jsonParsing = JsonParsing(nibName:"JsonParsing.swift", bundle: nil)
+     var dataToSend = NSString()
+     var dataFetchingCase : Int = -1
     
+    /** This is the Object of "CustomActivityIndicatorView" Class to show custom Indicator View */
     lazy private var activityIndicator : CustomActivityIndicatorView = {
         let image : UIImage = UIImage(named: "loading")!
         return CustomActivityIndicatorView(image: image)
@@ -36,11 +40,11 @@ class DetailViewController: UIViewController,JsonDelegete {
         super.viewWillDisappear(animated)
         
         if (self.isMovingFromParentViewController()){
-            var memberDetailArray:NSMutableArray = NSMutableArray()
         }
     }
-    override func viewWillAppear(animated: Bool) {
-        
+    override func viewWillAppear(animated: Bool)
+    {
+        //Call API to get updated List of all Runners.
         jsonParsing.loadData("GET", url: RunnerListApi, isHeader: true,throughAccessToken : false,dataToSend : dataToSend as String,sendData : true)
         jsonParsing.jpdelegate = self
         dataFetchingCase = ApiResponseValue.RunnerListApiCalled.rawValue
@@ -51,65 +55,67 @@ class DetailViewController: UIViewController,JsonDelegete {
     {
         tempView.addSubview(activityIndicator)
         activityIndicator.center = self.view.center
-        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    //MARK:- Push to AddRunnerVC Method
     @IBAction func addRunnerBtnClicked(sender : AnyObject)
     {
+        //Push to AddRunnerVC
         let addRunnerVC:UIViewController = (self.storyboard?.instantiateViewControllerWithIdentifier("AddRunner") as UIViewController!)
         self.navigationController?.pushViewController(addRunnerVC, animated: true)
     }
+    
+    //MARK: - UITableView Delegete Methods
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int)  -> Int
     {
          return memberDetailArray.count
     }
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cell:MemberDetailCell = tableView.dequeueReusableCellWithIdentifier("MemberDetailCell") as! MemberDetailCell
-        
+        //Add a bottom Layer to each cell.
         let bottomBorder = CALayer()
         bottomBorder.frame = CGRectMake(0.0, cell.frame.size.height - 1, cell.frame.size.width, 1.0);
         bottomBorder.backgroundColor = UIColor(red: 100.0/255.0, green: 100.0/255.0, blue: 100.0/255.0, alpha: 1.0).CGColor
         cell.layer.addSublayer(bottomBorder)
+        
+        //Set Cell Properties
         cell.backgroundColor = UIColor(red: 251.0/255.0, green: 251.0/255.0, blue: 251.0/255.0, alpha: 1.0)
         cell.textLabel?.textColor = UIColor(red: 133.0/255.0, green: 133.0/255.0, blue: 133.0/255.0, alpha: 1.0)
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         
+        //Set Runner Name and Alias on Cell.
         cell.nameLbl?.text = memberDetailArray.objectAtIndex(indexPath.row).valueForKey("first_name") as? String
         cell.aliasLbl?.text = memberDetailArray.objectAtIndex(indexPath.row).valueForKey("intials") as? String
         return cell
     }
+    
+    //MARK:- NSURLConnection Delegete Methods
+    /** This is the Delegete Method of NSURLConnection Class,and get called when we receive response of API */
     func dataFound()
     {
         let isSuccess : Int = 1
         activityIndicator.stopAnimating()
-        
         if(dataFetchingCase == ApiResponseValue.RunnerListApiCalled.rawValue)
         {
-            if ((jsonParsing.fetchedJsonResult["success"] as! Int)  == isSuccess )
+            if ((jsonParsing.fetchedJsonResult["success"] as! Int)  == isSuccess )  //test if we get response successfully.
             {
                 memberDetailArray.removeAllObjects()
                 var tempArray:NSArray = NSArray()
                 tempArray = (jsonParsing.fetchedDataArray.objectAtIndex(0) as! NSArray)
-                let predicate =  NSPredicate(format: "role == %@", "2" )
+                let predicate =  NSPredicate(format: "role == %@", "2" )  //Filter all the runners with role = 2,Since the role of Runner is 2 and role of Coach is 1.
                 memberDetailArray.addObjectsFromArray(tempArray.filteredArrayUsingPredicate(predicate))
-                
                 memberDetailTblView.reloadData()
             }
         }
-        
     }
+    /** This is the Delegete Method of NSURLConnection Class,and get called when we there is some problem in data receiving */
     func connectionInterruption(){
         
     }
-    
-    
-    
-
     /*
     // MARK: - Navigation
 

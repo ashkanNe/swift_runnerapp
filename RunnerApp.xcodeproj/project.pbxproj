@@ -54,21 +54,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		442B75391BAA5F3D00FF4E0E /* RunnerApp.temp_caseinsensitive_rename.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunnerApp.temp_caseinsensitive_rename.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		442B75391BAA5F3D00FF4E0E /* RunnerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunnerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		442B753D1BAA5F3D00FF4E0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		442B753E1BAA5F3D00FF4E0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		442B753E1BAA5F3D00FF4E0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		442B75411BAA5F3D00FF4E0E /* RunnerApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RunnerApp.xcdatamodel; sourceTree = "<group>"; };
 		442B75431BAA5F3D00FF4E0E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		442B75461BAA5F3D00FF4E0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		442B75481BAA5F3D00FF4E0E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		442B754B1BAA5F3D00FF4E0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		442B75511BAA5F3D00FF4E0E /* RunnerApp.temp_caseinsensitive_rename.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunnerApp.temp_caseinsensitive_rename.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		442B75511BAA5F3D00FF4E0E /* RunnerAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunnerAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		442B75561BAA5F3D00FF4E0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		442B75571BAA5F3D00FF4E0E /* RunnerAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerAppTests.swift; sourceTree = "<group>"; };
+		442B75571BAA5F3D00FF4E0E /* RunnerAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = RunnerAppTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		442B75611BAA6B0600FF4E0E /* running-logo-vector-illustration-35971018.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "running-logo-vector-illustration-35971018.jpg"; path = "RunnerApp/running-logo-vector-illustration-35971018.jpg"; sourceTree = "<group>"; };
 		442B75631BAA6F1C00FF4E0E /* lines_repeat_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lines_repeat_bg.png; path = RunnerApp/lines_repeat_bg.png; sourceTree = "<group>"; };
 		442B75651BAA721300FF4E0E /* dropdown_repeat_bg_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dropdown_repeat_bg_blue.png; path = RunnerApp/dropdown_repeat_bg_blue.png; sourceTree = "<group>"; };
-		442B756D1BAA79CF00FF4E0E /* MemberDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberDetailCell.swift; sourceTree = "<group>"; };
+		442B756D1BAA79CF00FF4E0E /* MemberDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MemberDetailCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		4495D2C21BB64889005D5662 /* RunnerApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RunnerApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		4495D2C31BB64889005D5662 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		4495D2C41BB64889005D5662 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
@@ -81,24 +81,24 @@
 		4495D2CB1BB64889005D5662 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		4495D2CC1BB64889005D5662 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		4495D2CD1BB64889005D5662 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		4495D2D81BB64A20005D5662 /* JsonParsing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonParsing.swift; sourceTree = "<group>"; };
+		4495D2D81BB64A20005D5662 /* JsonParsing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = JsonParsing.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		4495D2D91BB64A20005D5662 /* JsonParsing.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JsonParsing.xib; sourceTree = "<group>"; };
 		4495D2E01BB65A19005D5662 /* SignIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
 		4495D2E41BB6653B005D5662 /* CustomActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomActivityIndicatorView.swift; sourceTree = "<group>"; };
 		4495D2E61BB66589005D5662 /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
 		4495D2E81BB67B0B005D5662 /* SignUpFirst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpFirst.swift; sourceTree = "<group>"; };
 		4495D2EA1BB67B27005D5662 /* SignUpSecond.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpSecond.swift; sourceTree = "<group>"; };
-		4495D2EE1BB6A06B005D5662 /* SelectRunnerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectRunnerVC.swift; sourceTree = "<group>"; };
+		4495D2EE1BB6A06B005D5662 /* SelectRunnerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SelectRunnerVC.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		4495D2F01BB70ED0005D5662 /* StartRun.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartRun.swift; sourceTree = "<group>"; };
-		44BF4D981BBEE35000914056 /* EditRunnerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRunnerVC.swift; sourceTree = "<group>"; };
-		44C1832E1BB9889800A2AEE0 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constant.swift; path = ../Constant.swift; sourceTree = "<group>"; };
-		44C183301BB98C4800A2AEE0 /* OtherGlobalConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OtherGlobalConstant.swift; path = ../OtherGlobalConstant.swift; sourceTree = "<group>"; };
-		44C404EB1BBE568B0079F5C0 /* RunLapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunLapCell.swift; sourceTree = "<group>"; };
-		44C404ED1BBE8DDE0079F5C0 /* RunnerStatsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunnerStatsCell.swift; sourceTree = "<group>"; };
-		44C404EF1BBE91310079F5C0 /* RunnerStatsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunnerStatsVC.swift; sourceTree = "<group>"; };
-		44C5028A1BB7A735002ABF83 /* AddRunner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRunner.swift; sourceTree = "<group>"; };
-		44C502901BB83CB7002ABF83 /* RunLapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunLapVC.swift; sourceTree = "<group>"; };
-		EAE961241BB0FFD7009E373E /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		44BF4D981BBEE35000914056 /* EditRunnerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = EditRunnerVC.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		44C1832E1BB9889800A2AEE0 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Constant.swift; path = ../Constant.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		44C183301BB98C4800A2AEE0 /* OtherGlobalConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = OtherGlobalConstant.swift; path = ../OtherGlobalConstant.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		44C404EB1BBE568B0079F5C0 /* RunLapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = RunLapCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		44C404ED1BBE8DDE0079F5C0 /* RunnerStatsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = RunnerStatsCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		44C404EF1BBE91310079F5C0 /* RunnerStatsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = RunnerStatsVC.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		44C5028A1BB7A735002ABF83 /* AddRunner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AddRunner.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		44C502901BB83CB7002ABF83 /* RunLapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = RunLapVC.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		EAE961241BB0FFD7009E373E /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DetailViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,8 +137,8 @@
 		442B753A1BAA5F3D00FF4E0E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				442B75391BAA5F3D00FF4E0E /* RunnerApp.temp_caseinsensitive_rename.app */,
-				442B75511BAA5F3D00FF4E0E /* RunnerApp.temp_caseinsensitive_rename.xctest */,
+				442B75391BAA5F3D00FF4E0E /* RunnerApp.app */,
+				442B75511BAA5F3D00FF4E0E /* RunnerAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -251,7 +251,7 @@
 			);
 			name = RunnerApp;
 			productName = RunnerApp;
-			productReference = 442B75391BAA5F3D00FF4E0E /* RunnerApp.temp_caseinsensitive_rename.app */;
+			productReference = 442B75391BAA5F3D00FF4E0E /* RunnerApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 		442B75501BAA5F3D00FF4E0E /* RunnerAppTests */ = {
@@ -269,7 +269,7 @@
 			);
 			name = RunnerAppTests;
 			productName = RunnerAppTests;
-			productReference = 442B75511BAA5F3D00FF4E0E /* RunnerApp.temp_caseinsensitive_rename.xctest */;
+			productReference = 442B75511BAA5F3D00FF4E0E /* RunnerAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -280,11 +280,12 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0710;
-				ORGANIZATIONNAME = PresWorld;
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Tarun Sachdeva";
 				TargetAttributes = {
 					442B75381BAA5F3D00FF4E0E = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = V5XHSA8YNC;
 					};
 					442B75501BAA5F3D00FF4E0E = {
 						CreatedOnToolsVersion = 6.0;
@@ -492,10 +493,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = RunnerApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Tsss.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = RunnerApp.temp_caseinsensitive_rename;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "RunnerApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -506,10 +510,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = RunnerApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Tsss.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = RunnerApp.temp_caseinsensitive_rename;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "RunnerApp-Bridging-Header.h";
 			};
 			name = Release;
@@ -529,8 +536,8 @@
 				INFOPLIST_FILE = RunnerAppTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Tsss.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = RunnerApp.temp_caseinsensitive_rename;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RunnerApp.temp_caseinsensitive_rename.app/RunnerApp.temp_caseinsensitive_rename";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RunnerApp.app/RunnerApp";
 			};
 			name = Debug;
 		};
@@ -545,8 +552,8 @@
 				INFOPLIST_FILE = RunnerAppTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Tsss.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = RunnerApp.temp_caseinsensitive_rename;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RunnerApp.temp_caseinsensitive_rename.app/RunnerApp.temp_caseinsensitive_rename";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RunnerApp.app/RunnerApp";
 			};
 			name = Release;
 		};

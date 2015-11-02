@@ -1,10 +1,10 @@
-//
-//  SelectRunnerVC.swift
-//  RunnerApp
-//
-//  Created by Steven Prescott on 9/26/15.
-//  Copyright (c) 2015 Steven Prescott. All rights reserved.
-//
+/**
+￼@class SelectRunnerVC.swift
+￼@brief This file is used to display list of all Runners and user can select any runner by tap on their name.
+@discussion We display the list of Runner in a UITableView object and user can select runner by tap on the runner name.
+@author Prescott | Neshagaran
+@Copyright (c) 2015 Prescott | Neshagaran. All rights reserved.
+*/
 
 import UIKit
 
@@ -13,13 +13,22 @@ import UIKit
 class SelectRunnerVC: UIViewController,UITableViewDelegate,UITableViewDataSource,JsonDelegete {
 
     @IBOutlet var runnerListTblView: UITableView!
+    
+    /** This is the NSMutableArray Object which holds the list of all Runners */
     var runnerListArray:NSMutableArray = NSMutableArray()
+    
+    /** This is the NSMutableSet Object which holds the list of all Selected Runners */
     var selectedRunnerSet:NSMutableSet = NSMutableSet()
+    
     @IBOutlet var msgLblShow : UILabel!
     var timer : NSTimer = NSTimer()
+    
+    /** This is the Object of JsonParsing Class which is used to Call API. */
     let jsonParsing = JsonParsing(nibName:"JsonParsing.swift", bundle: nil)
     var dataToSend = NSString()
     var dataFetchingCase : Int = -1
+    
+    
     var selectedRunnersArray:NSMutableArray = NSMutableArray()
     var tempRunDetail:NSMutableDictionary = NSMutableDictionary()
     
@@ -32,26 +41,25 @@ class SelectRunnerVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         self.navigationItem.title = "Select Runner"
         self.automaticallyAdjustsScrollViewInsets = false
         msgLblShow.layer.masksToBounds = true
         msgLblShow.layer.cornerRadius = 4.0
-        
-        var heightTV:  Int = 44 * (runnerListArray.count)
-//        runnerListTblView.frame.size.height = CGFloat(heightTV) as CGFloat
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
+    
+    //MARK:- Show Error Message Method
+    /**
+    @brief This method is used to show error message for some predefine time only.
+    */
     func errorLblShow()
     {
         UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-            
             self.msgLblShow.alpha = 1.0
             self.view.userInteractionEnabled = false
             self.timer = NSTimer.scheduledTimerWithTimeInterval(1.2, target: self, selector:"update", userInfo:nil, repeats: false)
@@ -59,9 +67,11 @@ class SelectRunnerVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         
         
     }
+    /**
+    @brief This method is called when time of error message show completes .
+    */
     func update()
     {
-        
         UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
             
             self.msgLblShow.alpha = 0.0
@@ -69,35 +79,29 @@ class SelectRunnerVC: UIViewController,UITableViewDelegate,UITableViewDataSource
             self.view.userInteractionEnabled = true
             }, completion: nil)
     }
+    
+    //MARK:- Start Session Method
     @IBAction func startSessionBtnClicked(sender : AnyObject)
     {
-        if (selectedRunnerSet.count <= 0)
+        if (selectedRunnerSet.count <= 0)  //Check that atleast One runner must be selected to start a Run.
         {
             msgLblShow.text = "Please select any runner first."
             self.errorLblShow()
         }
         else{
             
-//            let startRunVC:UIViewController = self.storyboard?.instantiateViewControllerWithIdentifier("TimeLapStart")! as UIViewController
-//            
-//            
-//            
-//            self.navigationController?.pushViewController(startRunVC, animated: true)
-            
-            var runVC = self.storyboard?.instantiateViewControllerWithIdentifier("TimeLapStart") as! RunLapVC
+            //Push to runVc
+            let runVC = self.storyboard?.instantiateViewControllerWithIdentifier("TimeLapStart") as! RunLapVC
             runVC.runnerListArray = selectedRunnersArray
             runVC.runDetailDict = tempRunDetail
             self.navigationController?.pushViewController(runVC, animated: true)
-            
-            
         }
     }
-    
+    //MARK: - UITableView Delegete Methods
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int)  -> Int
     {
         return runnerListArray.count
     }
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cell:UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "cell")
@@ -110,36 +114,30 @@ class SelectRunnerVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         cell.textLabel?.textColor = UIColor(red: 133.0/255.0, green: 133.0/255.0, blue: 133.0/255.0, alpha: 1.0)
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         cell.textLabel?.text = String(format: "%@", runnerListArray.objectAtIndex(indexPath.row).valueForKey("first_name") as! String )
-
         return cell
     }
     func  tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         let cell:UITableViewCell = tableView .cellForRowAtIndexPath(indexPath)!
-        
         if selectedRunnerSet .containsObject(indexPath.row){
             selectedRunnerSet.removeObject(indexPath.row)
             cell.accessoryType = UITableViewCellAccessoryType.None
-             selectedRunnersArray.removeObject(runnerListArray.objectAtIndex(indexPath.row))
-        
+            selectedRunnersArray.removeObject(runnerListArray.objectAtIndex(indexPath.row))
         }
         else{
             selectedRunnerSet.addObject(indexPath.row)
             cell.accessoryType = UITableViewCellAccessoryType.Checkmark
             selectedRunnersArray.addObject(runnerListArray.objectAtIndex(indexPath.row))
         }
-        print(selectedRunnersArray)
     }
     
-    
+    //MARK:- NSURLConnection Delegete Methods
+    /** This is the Delegete Method of NSURLConnection Class,and get called when we receive response of API */
     func dataFound(){
-        var isSuccess : Int = 1
+        let isSuccess : Int = 1
         activityIndicator.stopAnimating()
-        if ((jsonParsing.fetchedJsonResult["success"] as! Int)  == isSuccess )
+        if ((jsonParsing.fetchedJsonResult["success"] as! Int)  == isSuccess )  //test if we get response successfully.
         {
-            
-           // runnerListArray.addObjectsFromArray()
-            
             let startRunVC:UIViewController? = (self.storyboard?.instantiateViewControllerWithIdentifier("TimeLapStart") as UIViewController!)
             self.navigationController?.pushViewController(startRunVC!, animated: true)
         }
@@ -149,6 +147,7 @@ class SelectRunnerVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         }
         
     }
+    /** This is the Delegete Method of NSURLConnection Class,and get called when we there is some problem in data receiving */
     func connectionInterruption(){
         
     }

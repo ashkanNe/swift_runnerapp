@@ -1,26 +1,35 @@
-//
-//  SignIn.swift
-//  RunnerApp
-//
-//  Created by Steven Prescott on 9/26/15.
-//  Copyright (c) 2015 Steven Prescott. All rights reserved.
-//
+/**
+￼@class SignIn.swift
+￼@brief This file is used to Login in the application,if user already registerd OR Sign Up As a new user.
+@author Prescott | Neshagaran
+@Copyright (c) 2015 Prescott | Neshagaran. All rights reserved.
+*/
+
 
 import UIKit
 
 class SignIn: UIViewController,UITextFieldDelegate,JsonDelegete {
-    
+ 
+    /* This is the UITextField Object which holds Email,Password of Coach */
      @IBOutlet var userNameTF : UITextField!
      @IBOutlet var passwordTF : UITextField!
+    
      @IBOutlet var loginBtn : UIButton!
      @IBOutlet var signUpBtn : UIButton!
      @IBOutlet var loadingIndicator : UIActivityIndicatorView!
      @IBOutlet var loadingView : UIView!
      @IBOutlet var msgLblShow : UILabel!
-     var dataToSend = NSString()
+
+    
+    /** This is the Object of JsonParsing Class which is used to Call API. */
      let jsonParsing = JsonParsing(nibName:"JsonParsing.swift", bundle: nil)
      var dataFetchingCase : Int = -1
+     var dataToSend = NSString()
+    
+    
      var timer : NSTimer = NSTimer()
+    
+    /** This is Boolean flag to hold information that View in currently Up or Down.*/
      var _MoveUp: Bool = true
     
     
@@ -53,9 +62,9 @@ class SignIn: UIViewController,UITextFieldDelegate,JsonDelegete {
     {
         tempView.addSubview(activityIndicator)
         activityIndicator.center = self.view.center
-        
     }
-    
+ 
+    //MARK:- Add a bottom layer Method
     func addBottomLayer(textField: UITextField)
     {
         let bottomBorder = CALayer()
@@ -63,44 +72,47 @@ class SignIn: UIViewController,UITextFieldDelegate,JsonDelegete {
         bottomBorder.backgroundColor = UIColor(red: 100.0/255.0, green: 100.0/255.0, blue: 100.0/255.0, alpha: 1.0).CGColor
         textField.layer.addSublayer(bottomBorder)
     }
+    
+    //MARK:- Show Error Message Method
+    /**
+    @brief This method is used to show error message for some predefine time only.
+    */
     func errorLblShow()
     {
             UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-                
                 self.msgLblShow.alpha = 1.0
                 self.view.userInteractionEnabled = false
                 self.timer = NSTimer.scheduledTimerWithTimeInterval(1.2, target: self, selector:"update", userInfo:nil, repeats: false)
                 }, completion: nil)
-            
-        
     }
+    /**
+    @brief This method is called when time of error message show completes .
+    */
     func update()
     {
-        
             UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-            
             self.msgLblShow.alpha = 0.0
             self.timer.invalidate()
             self.view.userInteractionEnabled = true
             }, completion: nil)
     }
     
-    
+    //MARK:- Sign Up Method
     @IBAction func signInBtnClicked(sender : AnyObject)
     {
-        
+        //Validate so that no field in empty.
         if userNameTF.text == ""
         {
             msgLblShow.text = "Please enter your Email-id"
             self.errorLblShow()
             
         }
-        else if (isValidEmail(userNameTF.text!) == false)
-        {
-            msgLblShow.text = "Please enter a valid Email-id"
-            self.errorLblShow()
-            
-        }
+//        else if (isValidEmail(userNameTF.text!) == false)
+//        {
+//            msgLblShow.text = "Please enter a valid Email-id"
+//            self.errorLblShow()
+//            
+//        }
         else if passwordTF.text == ""
         {
             msgLblShow.text = "Please enter your password"
@@ -109,38 +121,34 @@ class SignIn: UIViewController,UITextFieldDelegate,JsonDelegete {
         }
         else
         {
-        
-        NSUserDefaults.standardUserDefaults().setValue(userNameTF.text, forKey: "username")
+        NSUserDefaults.standardUserDefaults().setValue(userNameTF.text, forKey: "username") //Save username permanently for future access
         NSUserDefaults.standardUserDefaults().synchronize()
         
         NSUserDefaults.standardUserDefaults().setValue(passwordTF.text, forKey: "password")
+            //Save username permanently for future access
         NSUserDefaults.standardUserDefaults().synchronize()
         
+            //Call API to Login inti o the application
         jsonParsing.loadData("POST", url: LoginApi, isHeader: true,throughAccessToken : false,dataToSend : dataToSend as String,sendData : true)
         jsonParsing.jpdelegate = self
         dataFetchingCase = ApiResponseValue.LoginApiCalled.rawValue
         activityIndicator.startAnimating()
-            
         }
-
     }
-    
+    //MARK: - Validate Email Method
     func isValidEmail(testStr:String) -> Bool {
-        // println("validate calendar: \(testStr)")
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
-        
         let emailTest : NSPredicate = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluateWithObject(testStr)
     }
 
-    
+    //MARK: - UITextField Delegete Methods
     func textFieldDidBeginEditing(textField: UITextField)
     {
         if (textField == userNameTF || textField == passwordTF ){
             self.viewMoveUp(60.0)
         }
     }
-
     func textFieldDidEndEditing(textField: UITextField)
     {
         if textField == userNameTF {
@@ -151,19 +159,18 @@ class SignIn: UIViewController,UITextFieldDelegate,JsonDelegete {
             self.viewMoveDown(60.0)
         }
     }
-    
-    
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
         textField.resignFirstResponder()
         return true
     }
     
-    
+    //MARK:- UIView Animation Methods
+    /** This method is used to Up the View when user press on any UITextField */
     func viewMoveUp(value:CGFloat){
         if (_MoveUp){
             UIView.animateWithDuration( 0.3 , animations:
-                {   //Perform animation to lift view upside
+                {   //Perform animation to lift view upSide
                     var f : CGRect  = self.view.bounds
                     f.origin.y += value
                     self.view.bounds = f
@@ -171,27 +178,29 @@ class SignIn: UIViewController,UITextFieldDelegate,JsonDelegete {
             _MoveUp = false
         }
     }
+    /** This method is used to Down the View when user press on any UITextField */
     func viewMoveDown(value:CGFloat){
         if (!_MoveUp){
             UIView.animateWithDuration( 0.3 , animations:
-                {   //Perform animation to lift view upside
+                {   //Perform animation to lift view downSide
                     var f : CGRect  = self.view.bounds
                     f.origin.y -= value
                     self.view.bounds = f
             })
-            
             _MoveUp = true
         }
     }
     
+    //MARK:- NSURLConnection Delegete Methods
+    /** This is the Delegete Method of NSURLConnection Class,and get called when we receive response of API */
     func dataFound(){
-        var isSuccess : Int = 1
+        let isSuccess : Int = 1
         activityIndicator.stopAnimating()
-        if ((jsonParsing.fetchedJsonResult["success"] as! Int)  == isSuccess )
+        if ((jsonParsing.fetchedJsonResult["success"] as! Int)  == isSuccess ) //test if get response from server successfully.
         {
-            var access_token: NSString? = jsonParsing.fetchedDataArray.objectAtIndex(0)["access_token"] as? String
+            let access_token: NSString? = jsonParsing.fetchedDataArray.objectAtIndex(0)["access_token"] as? String
             
-            var coach_id: Int? = jsonParsing.fetchedDataArray.objectAtIndex(0)["id"] as? Int
+            let coach_id: Int? = jsonParsing.fetchedDataArray.objectAtIndex(0)["id"] as? Int
             NSUserDefaults.standardUserDefaults().setValue(String(format: "%d", coach_id!), forKey: "coach_id")
             NSUserDefaults.standardUserDefaults().synchronize()
             
@@ -200,10 +209,9 @@ class SignIn: UIViewController,UITextFieldDelegate,JsonDelegete {
             NSUserDefaults.standardUserDefaults().synchronize()
             NSUserDefaults.standardUserDefaults().setValue("false", forKey: "logout")
             NSUserDefaults.standardUserDefaults().synchronize()
-            var user_email: NSString? = jsonParsing.fetchedDataArray.objectAtIndex(0)["email_id"] as? String
+            let user_email: NSString? = jsonParsing.fetchedDataArray.objectAtIndex(0)["email_id"] as? String
             NSUserDefaults.standardUserDefaults().setValue(user_email, forKey: "email_id")
             NSUserDefaults.standardUserDefaults().synchronize()
-            
             
             let homeVC:UIViewController = self.storyboard?.instantiateViewControllerWithIdentifier("HomeScreen") as UIViewController!
             self.navigationController?.pushViewController(homeVC, animated: true)
@@ -214,6 +222,7 @@ class SignIn: UIViewController,UITextFieldDelegate,JsonDelegete {
         }
        
     }
+    /** This is the Delegete Method of NSURLConnection Class,and get called when we there is some problem in data receiving */
     func connectionInterruption(){
         
     }

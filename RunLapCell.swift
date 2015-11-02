@@ -2,8 +2,8 @@
 //  RunLapCell.swift
 //  RunnerApp
 //
-//  Created by Steven Prescott on 10/2/15.
-//  Copyright (c) 2015 Steven Prescott. All rights reserved.
+//  Created by Prescott | Neshagaran on 10/2/15.
+//  Copyright (c) 2015 Prescott | Neshagaran. All rights reserved.
 //
 
 import UIKit
@@ -18,11 +18,8 @@ class RunLapCell: UITableViewCell {
     
     @IBOutlet var timeLbl : UILabel!
     
+    
     var runnerId:NSMutableString = NSMutableString()
-    
-    
-    
-    
 
     override func awakeFromNib() {
         super.awakeFromNib()

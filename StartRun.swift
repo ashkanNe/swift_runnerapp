@@ -1,34 +1,44 @@
-//
-//  StartRun.swift
-//  RunnerApp
-//
-//  Created by Steven Prescott on 9/26/15.
-//  Copyright (c) 2015 Steven Prescott. All rights reserved.
-//
+/**
+￼@class StartRun.swift
+￼@brief This file is used to accept information about the Run Condition.
+@discussion In this user have to give the Run Name,Length,Weather conditions.Then have to select all the runners who take part in run by press Select Runner button.
+@author Prescott | Neshagaran
+@Copyright (c) 2015 Prescott | Neshagaran. All rights reserved.
+*/
 
 import UIKit
 
 class StartRun: UIViewController,JsonDelegete {
 
+    /** This is the UITextField Object which holds information about Run */
     @IBOutlet var milesTF : UITextField!
     @IBOutlet var feetTF : UITextField!
     @IBOutlet var runNameTF : UITextField!
+    
+    
     @IBOutlet var selectRunnerBtn : UIButton!
     @IBOutlet var weatherConditionBtn : UIButton!
     @IBOutlet var sunnyConditionBtn : UIButton!
     @IBOutlet var cloudyConditionBtn : UIButton!
     @IBOutlet var foggyConditionBtn : UIButton!
+    
     @IBOutlet var msgLblShow : UILabel!
+    
+    /** This is the NSMutableString Object which holds information about currentWeather */
     var currentWeatherCondition:NSMutableString = "sunny"
+    
     var allRunnerArray:NSMutableArray = NSMutableArray()
     var runDetailDict:NSMutableDictionary = NSMutableDictionary()
     
 
     var timer : NSTimer = NSTimer()
+    
+    /** This is the Object of JsonParsing Class which is used to Call API. */
     let jsonParsing = JsonParsing(nibName:"JsonParsing.swift", bundle: nil)
     var dataToSend = NSString()
     var dataFetchingCase : Int = -1
     
+    /** This is the Object of "CustomActivityIndicatorView" Class to show custom Indicator View */
     lazy private var activityIndicator : CustomActivityIndicatorView = {
         let image : UIImage = UIImage(named: "loading")!
         return CustomActivityIndicatorView(image: image)
@@ -37,14 +47,16 @@ class StartRun: UIViewController,JsonDelegete {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-       // self.navigationItem.setHidesBackButton(false, animated: false)
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
-        self.navigationItem.setHidesBackButton(false, animated: false)
         self.navigationItem.title = "Start Run"
+        //Add a bottom layer to each textField
         self.addBottomLayer(milesTF)
         self.addBottomLayer(feetTF)
         self.addBottomLayer(runNameTF)
+        
         addLoadingIndicator(self.view)
+        
+        //Give a corner radius ro all UIButtons
         sunnyConditionBtn.layer.cornerRadius = 4.0
         cloudyConditionBtn.layer.cornerRadius = 4.0
         foggyConditionBtn.layer.cornerRadius = 4.0
@@ -54,15 +66,9 @@ class StartRun: UIViewController,JsonDelegete {
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(animated: Bool) {
+        self.navigationItem.setHidesBackButton(false, animated: false)
         super.viewWillAppear(animated);
         
-    }
-    func addBottomLayer(textField: UITextField)
-    {
-        let bottomBorder = CALayer()
-        bottomBorder.frame = CGRectMake(0.0, textField.frame.size.height - 1, textField.frame.size.width, 1.0);
-        bottomBorder.backgroundColor = UIColor.blackColor().CGColor
-        textField.layer.addSublayer(bottomBorder)
     }
     func addLoadingIndicator (tempView : UIView)
     {
@@ -70,12 +76,35 @@ class StartRun: UIViewController,JsonDelegete {
         activityIndicator.center = self.view.center
         
     }
-
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    @IBAction func doneNumberPad(sender : AnyObject)
+    {
+        milesTF.resignFirstResponder()
+        feetTF.resignFirstResponder()
+    }
     
+    //MARK:- Add bottom layer Method
+    /**
+    @brief This method is used to add a layer at bottom to textField.
+    */
+    func addBottomLayer(textField: UITextField)
+    {
+        let bottomBorder = CALayer()
+        bottomBorder.frame = CGRectMake(0.0, textField.frame.size.height - 1, textField.frame.size.width, 1.0);
+        bottomBorder.backgroundColor = UIColor.blackColor().CGColor
+        textField.layer.addSublayer(bottomBorder)
+    }
     
+    //MARK:- Select Current Weather Condition Method
+    /**
+    @brief This method is used to select the current weather condition.
+    */
     @IBAction func selectWeatherConditionBtnClicked(sender : AnyObject)
     {
-        
+        //Change the background color of selected weather condition button.
         if (sender.tag == 1){
             sunnyConditionBtn.backgroundColor = UIColor(red: 33.0/255.0, green: 87.0/255.0, blue: 161.0/255.0, alpha: 1.0)
             foggyConditionBtn.backgroundColor = UIColor(red: 170.0/255.0, green: 170.0/255.0, blue: 170.0/255.0, alpha: 1.0)
@@ -96,8 +125,13 @@ class StartRun: UIViewController,JsonDelegete {
         }
     }
     
+    //MARK:- Select Runner Method
+    /**
+    @brief This method is used to select the runner who take part in run.
+    */
     @IBAction func selectRunnerBtnClicked(sender : AnyObject)
     {
+        //Adding Constraint so that no field should be empty.
         if(runNameTF.text == "" )
         {
             msgLblShow.text = "Please enter run name."
@@ -116,16 +150,17 @@ class StartRun: UIViewController,JsonDelegete {
         }
         else{
             
-            var runLength:NSMutableString = NSMutableString()
+            let runLength:NSMutableString = NSMutableString()  //Make a string of RunLength
             runLength.setString(milesTF.text!)
             runLength.appendString("miles")
             runLength.appendString(feetTF.text!)
             runLength.appendString("feet")
             
-            runDetailDict.setObject(runNameTF.text!, forKey: "runName")
+            runDetailDict.setObject(runNameTF.text!, forKey: "runName")    //Store Run Conditions for future use.
             runDetailDict.setObject(runLength, forKey: "runLength")
             runDetailDict.setObject(currentWeatherCondition, forKey: "weatherCondition")
             
+            //Call API to get updated list of all runners
             jsonParsing.loadData("GET", url: RunnerListApi, isHeader: true,throughAccessToken : false,dataToSend : dataToSend as String,sendData : true)
             jsonParsing.jpdelegate = self
             dataFetchingCase = ApiResponseValue.RunnerListApiCalled.rawValue
@@ -134,6 +169,10 @@ class StartRun: UIViewController,JsonDelegete {
         }
     }
     
+    //MARK:- Show Error Message Method
+    /**
+    @brief This method is used to show error message for some predefine time only.
+    */
     func errorLblShow()
     {
         UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
@@ -143,109 +182,73 @@ class StartRun: UIViewController,JsonDelegete {
             self.timer = NSTimer.scheduledTimerWithTimeInterval(1.2, target: self, selector:"update", userInfo:nil, repeats: false)
             }, completion: nil)
     }
+    /**
+    @brief This method is called when time of error message show completes .
+    */
     func update()
     {
-        
         UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-            
             self.msgLblShow.alpha = 0.0
             self.timer.invalidate()
             self.view.userInteractionEnabled = true
             }, completion: nil)
     }
     
-    
+    //MARK: - UITextField Delegete Methods
     func textFieldDidBeginEditing(textField: UITextField)
     {
+        //add a toolbar with keyboard
         let toolbar:UIToolbar = UIToolbar(frame: CGRectMake(0, 0, 320, 44))
         toolbar.barStyle = UIBarStyle.BlackTranslucent
-        
         let doneItem: UIBarButtonItem = UIBarButtonItem(title:"Done", style:UIBarButtonItemStyle.Plain, target: self, action: "doneNumberPad:")
-        
         let array:NSArray = [doneItem]
-        toolbar.items = array as! [UIBarButtonItem]
-        
+        toolbar.items = array as? [UIBarButtonItem]
         toolbar.sizeToFit()
-        
         if textField == milesTF{
             milesTF.inputAccessoryView = toolbar
-            
         }
         else
         {
             feetTF.inputAccessoryView = toolbar
         }
-        
     }
     
     func textFieldDidEndEditing(textField: UITextField)
     {
         
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
         textField.resignFirstResponder()
         return true
-        
     }
     
-    @IBAction func doneNumberPad(sender : AnyObject)
-    {
-        milesTF.resignFirstResponder()
-        feetTF.resignFirstResponder()
-    }
     
+    //MARK:- NSURLConnection Delegete Methods
+    /** This is the Delegete Method of NSURLConnection Class,and get called when we receive response of API */
     func dataFound(){
-        var isSuccess : Int = 1
+        let isSuccess : Int = 1
         activityIndicator.stopAnimating()
-        if ((jsonParsing.fetchedJsonResult["success"] as! Int)  == isSuccess )
+        if ((jsonParsing.fetchedJsonResult["success"] as! Int)  == isSuccess )  //test if we get response successfully.
         {
-            
-            
-          //  var allRunnerArray:NSMutableArray = NSMutableArray()
             var tempArray:NSArray = NSArray()
             tempArray = (jsonParsing.fetchedDataArray.objectAtIndex(0) as! NSArray)
-            
-            
-            let predicate =  NSPredicate(format: "role == %@", "2" )
-            
+            let predicate =  NSPredicate(format: "role == %@", "2" ) //Filter all the runners with role = 2,Since the role of Runner is 2 and role of Coach is 1.
             let allRunnerArray = tempArray.filteredArrayUsingPredicate(predicate)
-            print(allRunnerArray)
-            var selectRunnerVC = self.storyboard?.instantiateViewControllerWithIdentifier("SelectRunner") as! SelectRunnerVC
-            
-            selectRunnerVC.tempRunDetail = runDetailDict
-            
-            
-            selectRunnerVC.runnerListArray.addObjectsFromArray(allRunnerArray)
+            let selectRunnerVC = self.storyboard?.instantiateViewControllerWithIdentifier("SelectRunner") as! SelectRunnerVC
+            selectRunnerVC.tempRunDetail = runDetailDict    //Pass Run Detail information to SelectRunnerVC
+            selectRunnerVC.runnerListArray.addObjectsFromArray(allRunnerArray) //Pass Updated Runner list to SelectRunnerVC
             self.navigationController?.pushViewController(selectRunnerVC, animated: true)
         }
         else{
             msgLblShow.text = "Your email or password is incorrect"
             self.errorLblShow()
         }
-        
     }
-    
-    
+    /** This is the Delegete Method of NSURLConnection Class,and get called when we there is some problem in data receiving */
     func connectionInterruption(){
         
     }
-    
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-//        
-//        if(segue.identifier == "StartRun") {
-//            
-//            var startRun = (segue.destinationViewController as SelectRunnerVC)
-//            startRun.runnerListArray = allRunnerArray
-//    }
-//}
-    
-    
     /*
     // MARK: - Navigation
     

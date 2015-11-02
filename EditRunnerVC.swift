@@ -1,52 +1,74 @@
-//
-//  EditRunnerVC.swift
-//  RunnerApp
-//
-//  Created by Steven Prescott on 10/2/15.
-//  Copyright (c) 2015 Steven Prescott. All rights reserved.
-//
+/**
+￼@class EditRunnerVC.swift
+￼@brief This file is used to Make change in the existing information of particular Runner.
+@discussion Firstly User make change in any existing infromation of Runner and then press Save Change button to update the information on Server.
+@author Prescott | Neshagaran
+@Copyright (c) 2015 Prescott | Neshagaran. All rights reserved.
+*/
 
 import UIKit
 
 class EditRunnerVC: UIViewController,JsonDelegete {
     
+    /** This is the UITextField Object which holds information of Runner */
     @IBOutlet var firstNameTF : UITextField!
     @IBOutlet var LastNameTF : UITextField!
     @IBOutlet var heightTF : UITextField!
     @IBOutlet var weightTF : UITextField!
     @IBOutlet var ageTF : UITextField!
-    var dataToSend = NSString()
-    let jsonParsing = JsonParsing(nibName:"JsonParsing.swift", bundle: nil)
-    var dataFetchingCase : Int = -1
-    var _MoveUp: Bool = true
-    @IBOutlet var msgLblShow : UILabel!
-    var timer : NSTimer = NSTimer()
     
+    /** This is the UILabel Object which is used to show alert message */
+    @IBOutlet var msgLblShow : UILabel!
+
     
     @IBOutlet var saveChangesBtn : UIButton!
+    var dataToSend = NSString()
+    
+     /** This is the Object of JsonParsing Class which is used to Call API. */
+    let jsonParsing = JsonParsing(nibName:"JsonParsing.swift", bundle: nil)
+    var dataFetchingCase : Int = -1
+    
+    var timer : NSTimer = NSTimer()
+    
+    /** This is Boolean flag to hold information that View in currently Up or Down.*/
+    var _MoveUp: Bool = true
+ 
+    /** This will hold the existing information of Runner.*/
     var dataReceived:NSMutableDictionary = NSMutableDictionary()
 
+    /** This is the Object of "CustomActivityIndicatorView" Class to show custom Indicator View */
     lazy private var activityIndicator : CustomActivityIndicatorView = {
         let image : UIImage = UIImage(named: "loading")!
         return CustomActivityIndicatorView(image: image)
         }()
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+         
+            
         self.navigationItem.title = "Edit Runner"
-         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+        //Set Up the existing infromation of Runner on View.
         firstNameTF.text = String(format: "%@", dataReceived.objectForKey("first_name") as! String)
         LastNameTF.text = String(format: "%@", dataReceived.objectForKey("last_name") as! String)
         heightTF.text = String(format: "%@", dataReceived.objectForKey("height") as! String)
         weightTF.text = String(format: "%@", dataReceived.objectForKey("weight") as! String)
         ageTF.text = String(format: "%d", dataReceived.objectForKey("age") as! Int)
+        
+        //Add Custom Indicator on View.
         self.addLoadingIndicator(view)
-        // Do any additional setup after loading the view.
+        
     }
     
+    /** 
+        @brief This method is used to send updated information to the server.
+    */
     @IBAction func saveChangesBtnClicked(sender : AnyObject)
     {
+            
+        //Adding Constraint so that no field should be empty.
         if firstNameTF.text == ""
         {
             msgLblShow.text = "Please enter first Name."
@@ -75,7 +97,7 @@ class EditRunnerVC: UIViewController,JsonDelegete {
             self.errorLblShow()
         }
         else{
-            let data = NSMutableDictionary()
+            let data = NSMutableDictionary()      //Data to send along with API
             data.setValue("not available", forKey: "userid")
             data.setValue("not available", forKey: "username")
             data.setValue("not available", forKey: "password")
@@ -85,16 +107,17 @@ class EditRunnerVC: UIViewController,JsonDelegete {
             data.setValue(weightTF.text, forKey: "weight")
             data.setValue(heightTF.text, forKey: "height")
             data.setValue(ageTF.text, forKey: "age")
-            data.setValue("not available", forKey: "dob")
+            data.setValue("0000-00-00 00:00:00", forKey: "dob")
             data.setValue("not available", forKey: "school")
             data.setValue("not available", forKey: "team")
             data.setValue("2", forKey: "role")
             data.setValue("not available", forKey: "coach_id")
             data.setValue("not available", forKey: "coach_name")
             
-            dataToSend  = data.JSONRepresentation()
-            print(dataReceived)
-            let tempData : String = String(format:"id=%d?", dataReceived.objectForKey("id") as! Int)
+            dataToSend  = data.JSONRepresentation()  //Change data in Json Format
+        
+        //Call API to send updated information on the server.
+            let tempData : String = String(format:"id=%d", dataReceived.objectForKey("id") as! Int)
             jsonParsing.loadData("POST", url: EditRunnerApi + tempData , isHeader: true,throughAccessToken : false,dataToSend : dataToSend as String,sendData : true)
             jsonParsing.jpdelegate = self
             dataFetchingCase = ApiResponseValue.EditRunnerApiCalled.rawValue
@@ -110,33 +133,37 @@ class EditRunnerVC: UIViewController,JsonDelegete {
             
         }
     }
-    func addLoadingIndicator (tempView : UIView)
+    func addLoadingIndicator (tempView : UIView)   //To Add Custom Indicator on this View
     {
         tempView.addSubview(activityIndicator)
         activityIndicator.center = self.msgLblShow.center
         
     }
+    
+   /** This method is used to show any error alert on the screen */
     func errorLblShow()
     {
-        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-            
+       
+        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {                         //Show message Label.
+    
             self.msgLblShow.alpha = 1.0
             self.view.userInteractionEnabled = false
-            self.timer = NSTimer.scheduledTimerWithTimeInterval(1.2, target: self, selector:"update", userInfo:nil, repeats: false)
+            self.timer = NSTimer.scheduledTimerWithTimeInterval(1.2, target: self, selector:"update", userInfo:nil, repeats: false)     //Start Timer to show alert for a specific time.
             }, completion: nil)
         
         
     }
+    
+  /** This method is called when timer completes and to hide erro label  */
     func update()
     {
-        
-        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-            
+        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {                       //Hide the message Label
             self.msgLblShow.alpha = 0.0
             self.timer.invalidate()
             self.view.userInteractionEnabled = true
             }, completion: nil)
     }
+   /** This method is to hide the keyboard from View. */
     @IBAction func doneNumberPad(sender : AnyObject)
     {
         heightTF.resignFirstResponder()
@@ -144,19 +171,54 @@ class EditRunnerVC: UIViewController,JsonDelegete {
         ageTF.resignFirstResponder()
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    //MARK:- UIView Animation Methods
+    /** This method is used to Up the View when user press on any UITextField */
+    func viewMoveUp(value:CGFloat){
+        if (_MoveUp){
+            UIView.animateWithDuration( 0.3 , animations:
+                {   //Perform animation to lift view upside
+                    var f : CGRect  = self.view.bounds
+                    f.origin.y += value
+                    self.view.bounds = f
+            })
+            _MoveUp = false
+        }
+    }
+    /** This method is used to Down the View when user press on any UITextField */
+    func viewMoveDown(value:CGFloat){
+        if (!_MoveUp){
+            UIView.animateWithDuration( 0.3 , animations:
+                {   //Perform animation to lift view downSide
+                    var f : CGRect  = self.view.bounds
+                    f.origin.y -= value
+                    self.view.bounds = f
+            })
+            
+            _MoveUp = true
+        }
+    }
+    
+    
+   //MARK:- UITextField Delegete Methods
     func textFieldDidBeginEditing(textField: UITextField)
     {
-      //  self.viewMoveUp(60.0)
+      //To add a Toolbar on NumberPad keyboard.
         let toolbar:UIToolbar = UIToolbar(frame: CGRectMake(0, 0, 320, 44))
         toolbar.barStyle = UIBarStyle.BlackTranslucent
         let doneItem: UIBarButtonItem = UIBarButtonItem(title:"Done", style:UIBarButtonItemStyle.Plain, target: self, action: "doneNumberPad:")
         let array:NSArray = [doneItem]
-        toolbar.items = array as! [UIBarButtonItem]
+        toolbar.items = array as? [UIBarButtonItem]
         toolbar.sizeToFit()
         if textField == weightTF || textField == heightTF || textField == ageTF {
             textField.inputAccessoryView = toolbar
         }
     }
+    
+   /** This method is used to make the next UITextfield active when user press next on any UITextField. */
     func textFieldDidEndEditing(textField: UITextField)
     {
         if textField == firstNameTF
@@ -185,7 +247,6 @@ class EditRunnerVC: UIViewController,JsonDelegete {
         }
         else
         {
-           // self.viewMoveDown(60.0)
             ageTF.resignFirstResponder()
         }
     }
@@ -196,58 +257,30 @@ class EditRunnerVC: UIViewController,JsonDelegete {
         return true
         
     }
+ 
     
-    func viewMoveUp(value:CGFloat){
-        if (_MoveUp){
-            UIView.animateWithDuration( 0.3 , animations:
-                {   //Perform animation to lift view upside
-                    var f : CGRect  = self.view.bounds
-                    f.origin.y += value
-                    self.view.bounds = f
-            })
-            _MoveUp = false
-        }
-    }
-    func viewMoveDown(value:CGFloat){
-        if (!_MoveUp){
-            UIView.animateWithDuration( 0.3 , animations:
-                {   //Perform animation to lift view upside
-                    var f : CGRect  = self.view.bounds
-                    f.origin.y -= value
-                    self.view.bounds = f
-            })
-            
-            _MoveUp = true
-        }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+     //MARK:- NSURLConnection Delegete Methods
+    /** This is the Delegete Method of NSURLConnection Class,and get called when we receive response of API */
     func dataFound(){
         
         let isSuccess : Int = 1
         activityIndicator.stopAnimating()
         if (dataFetchingCase == ApiResponseValue.EditRunnerApiCalled.rawValue){
-            if ((jsonParsing.fetchedJsonResult["success"] as! Int)  == isSuccess )
+            if ((jsonParsing.fetchedJsonResult["success"] as! Int)  == isSuccess ) //test if we get response successfully.
             {
                 print("Save changes Done.")
             }
             else{
-//                msgLblShow.text = "Your email or password is incorrect"
-//                self.errorLblShow()
+            
             }
             
         }
     }
+    
+   /** This is the Delegete Method of NSURLConnection Class,and get called when we there is some problem in data receiving */
     func connectionInterruption(){
         
     }
-
-    
-    
 
     /*
     // MARK: - Navigation

@@ -1,25 +1,30 @@
-//
-//  AddRunner.swift
-//  RunnerApp
-//
-//  Created by Steven Prescott on 9/27/15.
-//  Copyright (c) 2015 Steven Prescott. All rights reserved.
-//
-
+/**
+￼@class AddRunner.swift
+￼@brief This file is used to ADD/Remove/Edit Runner.
+@discussion By default Add Runner Tab is selected.You can select other tab to Remove/Edit a runner.
+@author Prescott | Neshagaran
+@Copyright (c) 2015 Prescott | Neshagaran. All rights reserved.
+*/
 import UIKit
 
 class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate {
-    
+ 
+    /** This is the UITextField Object which holds information of Runner */
     @IBOutlet var firstNameTF : UITextField!
     @IBOutlet var LastNameTF : UITextField!
     @IBOutlet var heightTF : UITextField!
     @IBOutlet var weightTF : UITextField!
     @IBOutlet var ageTF : UITextField!
     
+    /** This is the UILabel Object which is used to show alert message */
     @IBOutlet var alertMsgLbl : UILabel!
-    @IBOutlet var doneBtn : UIButton!
     
+    @IBOutlet var doneBtn : UIButton!
+
+    /** This is the UISegmentedControl Object which is used to show different options of Add/Remove/Edit Runner.*/
     @IBOutlet var addRemoveSegmant : UISegmentedControl!
+    
+    /** This is the UIView Object which is used as Subview to show two different view for Add/Remove Runner.*/
     @IBOutlet var addRunnerView : UIView!
     @IBOutlet var removeRunnerView : UIView!
     
@@ -27,17 +32,23 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate {
     var runnerListArray:NSMutableArray = NSMutableArray()
     var selectedRunnerDict:NSMutableDictionary = NSMutableDictionary()
     var selectedRunnerSet:NSMutableSet = NSMutableSet()
-    var selectedSegmentOptn:Int = -1
     var dataToPass:NSMutableDictionary = NSMutableDictionary()
+    
+    /** This is flag to hold information that which segment is selected.*/
+    var selectedSegmentOptn:Int = -1
+    
+    /** This is Boolean flag to hold information that View in currently Up or Down.*/
     var _MoveUp: Bool = true
     
     @IBOutlet var msgLblShow : UILabel!
     var timer : NSTimer = NSTimer()
-    var dataToSend = NSString()
+    
+     /** This is the Object of JsonParsing Class which is used to Call API. */
     let jsonParsing = JsonParsing(nibName:"JsonParsing.swift", bundle: nil)
     var dataFetchingCase : Int = -1
+    var dataToSend = NSString()
     
-    
+    /** This is the Object of "CustomActivityIndicatorView" Class to show custom Indicator View */
     lazy private var activityIndicator : CustomActivityIndicatorView = {
         let image : UIImage = UIImage(named: "loading")!
         return CustomActivityIndicatorView(image: image)
@@ -48,16 +59,17 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         self.navigationItem.title = "Enrolled Runner"
         self.automaticallyAdjustsScrollViewInsets = false
+        
+        //Add a layer to bottom of each UITextfield
         self.addBottomLayer(firstNameTF)
         self.addBottomLayer(LastNameTF)
         self.addBottomLayer(heightTF)
         self.addBottomLayer(weightTF)
         self.addBottomLayer(ageTF)
+        
         doneBtn.layer.cornerRadius = 4.0
         self.addLoadingIndicator(view)
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
     }
     func addLoadingIndicator (tempView : UIView)
     {
@@ -67,6 +79,7 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate {
     }
     override func viewWillAppear(animated: Bool) {
         
+        //Call API to get updated list of Runner from Server.
         jsonParsing.loadData("GET", url: RunnerListApi, isHeader: true,throughAccessToken : false,dataToSend : dataToSend as String,sendData : true)
         jsonParsing.jpdelegate = self
         dataFetchingCase = ApiResponseValue.InitializeRunnerScreen.rawValue
@@ -74,7 +87,10 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate {
         super.viewWillAppear(animated)
     }
     
-    
+    //MARK:- UISegmentedControl Method
+    /**
+    @brief This method is used to select different segment of UISegmentedControl.
+    */
     @IBAction func segmentedBtnClicked(sender : AnyObject)
     {
         alertMsgLbl.hidden = false
@@ -87,6 +103,7 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate {
         }
         else if sender.selectedSegmentIndex == 1 {
             
+            //Call API to get updated list of Runner from Server.
             jsonParsing.loadData("GET", url: RunnerListApi, isHeader: true,throughAccessToken : false,dataToSend : dataToSend as String,sendData : true)
             jsonParsing.jpdelegate = self
             dataFetchingCase = ApiResponseValue.RunnerListApiCalled.rawValue
@@ -99,7 +116,8 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate {
             
         }
         else{
-            
+           
+            //Call API to get updated list of Runner from Server.
             jsonParsing.loadData("GET", url: RunnerListApi, isHeader: true,throughAccessToken : false,dataToSend : dataToSend as String,sendData : true)
             jsonParsing.jpdelegate = self
             dataFetchingCase = ApiResponseValue.RunnerListApiCalled.rawValue
@@ -112,6 +130,10 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate {
         }
         
     }
+    //MARK:- Add bottom layer Method
+    /**
+    @brief This method is used to add a layer at bottom to textField.
+    */
     func addBottomLayer(textField: UITextField)
     {
         let bottomBorder = CALayer()
@@ -119,6 +141,11 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate {
         bottomBorder.backgroundColor = UIColor.blackColor().CGColor
         textField.layer.addSublayer(bottomBorder)
     }
+    
+    //MARK:- Show Error Message Method
+    /**
+    @brief This method is used to show error message for some predefine time only.
+    */
     func errorLblShow()
     {
         UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
@@ -130,6 +157,9 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate {
         
         
     }
+    /**
+    @brief This method is called when time of error message show completes .
+    */
     func update()
     {
         
@@ -141,9 +171,13 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate {
             }, completion: nil)
     }
     
-    
+    //MARK:- Add new Runner information to the Server.
+    /**
+    @brief This method is used to add New Runner information to the Server.
+    */
     @IBAction func doneBtnClicked(sender : AnyObject)
     {
+        //validate that no field should be empty
         if firstNameTF.text == ""
         {
             msgLblShow.text = "Please enter first name."
@@ -174,10 +208,12 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate {
         }
         else
         {
-            let firstIndex = firstNameTF.text!.startIndex
-          //  let firstChar =   firstNameTF.text[firstIndex]
-          //  let secondChar = LastNameTF.text[firstIndex]
-            var data = NSMutableDictionary()
+            let firstIndex = firstNameTF.text!.startIndex        //Find Initials of the Runner Name
+            let firstChar:Character =   firstNameTF.text![firstIndex]
+            let secondChar:Character = LastNameTF.text![firstIndex]
+            let intials:String = addCharcters(firstChar, last: secondChar)
+            
+            let data = NSMutableDictionary()     //Data to send along with API
             data.setValue("not available", forKey: "userid")
             data.setValue("not available", forKey: "username")
             data.setValue("not available", forKey: "password")
@@ -187,31 +223,33 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate {
             data.setValue(weightTF.text, forKey: "weight")
             data.setValue(heightTF.text, forKey: "height")
             data.setValue(ageTF.text, forKey: "age")
-            data.setValue("not available", forKey: "dob")
+            data.setValue("0000-00-00 00:00:00", forKey: "dob")
             data.setValue("not available", forKey: "school")
             data.setValue("not available", forKey: "team")
             data.setValue("2", forKey: "role")
             data.setValue("not available", forKey: "coach_id")
             data.setValue("not available", forKey: "coach_name")
-           // data.setValue(firstChar + secondChar, forKey: "intials")
-            data.setValue("N.A", forKey: "intials")
+            data.setValue(intials, forKey: "intials")
+            data.setValue("not available", forKey: "access_token")
             
             
-            dataToSend  = data.JSONRepresentation()
-            
+            dataToSend  = data.JSONRepresentation()     //Change data in Json Format
+            print(dataToSend)
+            //Call API to save runner information on the server.
             jsonParsing.loadData("POST", url: SignUpApi, isHeader: true,throughAccessToken : false,dataToSend : dataToSend as String,sendData : true)
             jsonParsing.jpdelegate = self
             dataFetchingCase = ApiResponseValue.AddRunnerApiCalled.rawValue
             activityIndicator.startAnimating()
-            
-           // let seconVC:UIViewController = self.storyboard?.instantiateViewControllerWithIdentifier("signUpSecond")! as UIViewController
-            
-          //  self.navigationController?.pushViewController(seconVC, animated: true)
-            
-            
         }
     }
     
+    //MARK: - Obtain Initials from Name Methods
+    func addCharcters (first:Character, last:Character) -> String {
+    return "\(first)\(last)"
+    }
+   
+    
+    //MARK: - UITableView Delegete Methods
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int)  -> Int
     {
         return runnerListArray.count
@@ -219,15 +257,21 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-         let cell:UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "cell")
+        //Create a UITableViewCell Object
+        let cell:UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "cell")
         cell.frame = CGRectMake(0.0, 100.0, tableView.frame.size.width, 44.0);
+        
+        //Add a layer at bottom of each Cell.
         let bottomBorder = CALayer()
         bottomBorder.frame = CGRectMake(0.0, cell.frame.size.height - 1, cell.frame.size.width, 1.0);
         bottomBorder.backgroundColor = UIColor(red: 100.0/255.0, green: 100.0/255.0, blue: 100.0/255.0, alpha: 1.0).CGColor
         cell.layer.addSublayer(bottomBorder)
+        
+        //Set Cell Properties
         cell.backgroundColor = UIColor(red: 242.0/255.0, green: 242.0/255.0, blue: 242.0/255.0, alpha: 1.0)
         cell.textLabel?.textColor = UIColor(red: 133.0/255.0, green: 133.0/255.0, blue: 133.0/255.0, alpha: 1.0)
         
+        //Set Name of Runner on Cell
         if (runnerListArray.count > 0){
            cell.textLabel?.text = String(format: "%@", runnerListArray.objectAtIndex(indexPath.row).valueForKey("first_name") as! String )
         }
@@ -238,55 +282,42 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate {
     func  tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         
+        //get selected runner detail
         selectedRunnerDict.removeAllObjects()
         selectedRunnerDict.addEntriesFromDictionary(runnerListArray.objectAtIndex(indexPath.row) as! NSDictionary as [NSObject : AnyObject])
         
         if(selectedSegmentOptn == 0){
-        let cell:UITableViewCell = tableView .cellForRowAtIndexPath(indexPath)!
-            
-            var removeRunnerAlert: UIAlertView = UIAlertView()
-            
+            //Show alert for remove runner
+            let removeRunnerAlert: UIAlertView = UIAlertView()
             removeRunnerAlert.delegate = self
-            
             removeRunnerAlert.title = "Alert"
             removeRunnerAlert.message = "Do you want to remove runner!"
             removeRunnerAlert.addButtonWithTitle("Ok")
             removeRunnerAlert.addButtonWithTitle("Cancel")
-            
             removeRunnerAlert.show()
-            
-//        if selectedRunnerSet .containsObject(indexPath.row){
-//            selectedRunnerSet.removeObject(indexPath.row)
-//             cell.accessoryType = UITableViewCellAccessoryType.None
-//        }
-//        else{
-//           selectedRunnerSet.addObject(indexPath.row)
-//             cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-//        }
-            
-            
-            
-       
         }
         else if(selectedSegmentOptn == 1){
-            //Edit
+            //Forward to Edit Runner View Controller
            
-            var editVC = self.storyboard?.instantiateViewControllerWithIdentifier("EditVC") as! EditRunnerVC
+            let editVC = self.storyboard?.instantiateViewControllerWithIdentifier("EditVC") as! EditRunnerVC
             editVC.dataReceived = selectedRunnerDict
             self.navigationController?.pushViewController(editVC, animated: true)
         }
     }
+    //MARK: - Prepare For Segue Method
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
         let destinationVC = segue.destinationViewController as! EditRunnerVC
         destinationVC.dataReceived = dataToPass
     }
+    //MARK: - UIAlertView Delegete Method
     func alertView(View: UIAlertView, clickedButtonAtIndex buttonIndex: Int){
         
        switch buttonIndex{
         case 1:
             break;
         case 0:
+            //Call API to remove runner from server.
             let data : String = String(format:"id=%d?", selectedRunnerDict.objectForKey("id") as! Int)
             jsonParsing.loadData("POST", url: RemoveRunnerApi + data, isHeader: true,throughAccessToken : false,dataToSend : dataToSend as String,sendData : true)
             jsonParsing.jpdelegate = self
@@ -299,26 +330,21 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate {
         }
     }
     
+    //MARK: - UITextField Delegete Methods
     func textFieldDidBeginEditing(textField: UITextField)
     {
+        //add a toolbar with keyboard
         self.viewMoveUp(90.0)
         let toolbar:UIToolbar = UIToolbar(frame: CGRectMake(0, 0, 320, 44))
         toolbar.barStyle = UIBarStyle.BlackTranslucent
         let doneItem: UIBarButtonItem = UIBarButtonItem(title:"Done", style:UIBarButtonItemStyle.Plain, target: self, action: "doneNumberPad:")
         let array:NSArray = [doneItem]
-        toolbar.items = array as! [UIBarButtonItem]
+        toolbar.items = array as? [UIBarButtonItem]
         toolbar.sizeToFit()
         if textField == weightTF || textField == heightTF || textField == ageTF {
             textField.inputAccessoryView = toolbar
         }
     }
-    @IBAction func doneNumberPad(sender : AnyObject)
-    {
-        heightTF.resignFirstResponder()
-        weightTF.resignFirstResponder()
-        ageTF.resignFirstResponder()
-    }
-
     func textFieldDidEndEditing(textField: UITextField)
     {
         if textField == firstNameTF
@@ -334,7 +360,7 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate {
         else if textField == heightTF
         {
             heightTF.resignFirstResponder()
-             weightTF.becomeFirstResponder()
+            weightTF.becomeFirstResponder()
         }
         else if textField == weightTF
         {
@@ -353,7 +379,17 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate {
         return true
         
     }
+    
+    @IBAction func doneNumberPad(sender : AnyObject)
+    {
+        heightTF.resignFirstResponder()
+        weightTF.resignFirstResponder()
+        ageTF.resignFirstResponder()
+    }
 
+    
+    //MARK:- UIView Animation Methods
+    /** This method is used to Up the View when user press on any UITextField */
     func viewMoveUp(value:CGFloat){
         if (_MoveUp){
             UIView.animateWithDuration( 0.3 , animations:
@@ -365,10 +401,11 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate {
             _MoveUp = false
         }
     }
+    /** This method is used to Down the View when user press on any UITextField */
     func viewMoveDown(value:CGFloat){
         if (!_MoveUp){
             UIView.animateWithDuration( 0.3 , animations:
-                {   //Perform animation to lift view upside
+                {   //Perform animation to lift view downside
                     var f : CGRect  = self.view.bounds
                     f.origin.y -= value
                     self.view.bounds = f
@@ -378,13 +415,15 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate {
         }
     }
 
+    //MARK:- NSURLConnection Delegete Methods
+    /** This is the Delegete Method of NSURLConnection Class,and get called when we receive response of API */
     func dataFound(){
         let isSuccess : Int = 1
         activityIndicator.stopAnimating()
         
-        if(dataFetchingCase == ApiResponseValue.RunnerListApiCalled.rawValue)
+        if(dataFetchingCase == ApiResponseValue.RunnerListApiCalled.rawValue)        //test for dataFecthing Case.
         {
-            if ((jsonParsing.fetchedJsonResult["success"] as! Int)  == isSuccess )
+            if ((jsonParsing.fetchedJsonResult["success"] as! Int)  == isSuccess )   //test if we get response successfully.
             {
                 runnerListArray.removeAllObjects()
                 var tempArray:NSArray = NSArray()
@@ -408,7 +447,7 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate {
                 self.errorLblShow()
             }
             else{
-                msgLblShow.text = "Your email or password is incorrect"
+                msgLblShow.text = "There is a problem,Please try later."
                 self.errorLblShow()
             }
         }
@@ -416,6 +455,7 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate {
         {
             if ((jsonParsing.fetchedJsonResult["success"] as! Int)  == isSuccess )
             {
+                //Call API to get updated list of runners
                 jsonParsing.loadData("GET", url: RunnerListApi, isHeader: true,throughAccessToken : false,dataToSend : dataToSend as String,sendData : true)
                 jsonParsing.jpdelegate = self
                 dataFetchingCase = ApiResponseValue.RunnerListApiCalled.rawValue
@@ -431,16 +471,11 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate {
                 tempArray = (jsonParsing.fetchedDataArray.objectAtIndex(0) as! NSArray)
                 let predicate =  NSPredicate(format: "role == %@", "2" )
                 runnerListArray.addObjectsFromArray(tempArray.filteredArrayUsingPredicate(predicate))
-               // removeRunnerView.hidden = false
                 allRunnerTblView.reloadData()
             }
         }
-        
-        
-        
-        
-        
     }
+    /** This is the Delegete Method of NSURLConnection Class,and get called when we there is some problem in data receiving */
     func connectionInterruption(){
         
     }
@@ -464,3 +499,10 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate {
     */
 
 }
+//extension String {
+//    
+//    subscript (i: Int) -> Character {
+//        return self[self.startIndex.advancedBy(i)]
+//    }
+//    
+//}

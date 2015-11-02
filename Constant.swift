@@ -2,14 +2,18 @@
 //  Constant.swift
 //  RunnerApp
 //
-//  Created by Steven Prescott on 9/28/15.
-//  Copyright (c) 2015 Steven Prescott. All rights reserved.
+//  Created by Prescott | Neshagaran on 9/28/15.
+//  Copyright (c) 2015 Prescott | Neshagaran. All rights reserved.
 //
 
 import Foundation
 
 
-let baseUrl = "http://oips.org/runnerapp/api/web/v1/" // developmentURL
+
+
+let baseUrl = "http://runnerappusa.azurewebsites.net/api/web/index.php/v1/" // developmentURL
+
+//let baseUrl = "http://oips.org/runnerapp/api/web/v1/" // developmentURL
 //let baseUrl = "http://status.keyss.in/app/api/web/v1/" // liveURL
 
 //LoginApi

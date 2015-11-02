@@ -2,8 +2,8 @@
 //  OtherGlobalConstant.swift
 //  RunnerApp
 //
-//  Created by Steven Prescott on 9/28/15.
-//  Copyright (c) 2015 Steven Prescott. All rights reserved.
+//  Created by Prescott | Neshagaran on 9/28/15.
+//  Copyright (c) 2015 Prescott | Neshagaran. All rights reserved.
 //
 
 import Foundation

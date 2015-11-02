@@ -1,23 +1,29 @@
-//
-//  SignUpFirst.swift
-//  RunnerApp
-//
-//  Created by Steven Prescott on 9/26/15.
-//  Copyright (c) 2015 Steven Prescott. All rights reserved.
-//
+/**
+￼@class SignUpFirst.swift
+￼@brief This file is used to accept the information of the Coach.
+@discussion User add Coach Name,User Name,Team Name,School Name of the Coach.
+@author Prescott | Neshagaran
+@Copyright (c) 2015 Prescott | Neshagaran. All rights reserved.
+*/
 
 import UIKit
 
 class SignUpFirst: UIViewController {
-    
+
+    /* This is the UITextField Object which holds Email,Password and Confirm Password of Coach */
     @IBOutlet var coachNameTF : UITextField!
     @IBOutlet var UserNameTF : UITextField!
     @IBOutlet var teamTF : UITextField!
     @IBOutlet var schoolTF : UITextField!
+    
+    /** This is Boolean flag to hold information that View in currently Up or Down.*/
     var _MoveUp: Bool = true
+    
     @IBOutlet var msgLblShow : UILabel!
     @IBOutlet var nextBtn : UIButton!
     var timer : NSTimer = NSTimer()
+ 
+    /** This is NSMutableArray Object which hold information of Runner.*/
     var dataArray:NSMutableArray = NSMutableArray()
     
     lazy private var activityIndicator : CustomActivityIndicatorView = {
@@ -28,16 +34,19 @@ class SignUpFirst: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
          self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+        
+        //Add a Bottom Layer to UITextField
         self.addBottomLayer(coachNameTF)
         self.addBottomLayer(UserNameTF)
         self.addBottomLayer(teamTF)
         self.addBottomLayer(schoolTF)
         
+        self.navigationItem.title = "Sign Up"
+        
         msgLblShow.layer.masksToBounds = true
         msgLblShow.layer.cornerRadius = 4.0
         nextBtn.layer.cornerRadius = 4.0
 
-        // Do any additional setup after loading the view.
     }
     func addLoadingIndicator (tempView : UIView)
     {
@@ -46,6 +55,7 @@ class SignUpFirst: UIViewController {
         
     }
     
+    //MARK:- Add a bottom layer Method
     func addBottomLayer(textField: UITextField)
     {
         let bottomBorder = CALayer()
@@ -54,47 +64,49 @@ class SignUpFirst: UIViewController {
         textField.layer.addSublayer(bottomBorder)
     }
     
+    //MARK:- Show Error Message Method
+    /**
+    @brief This method is used to show error message for some predefine time only.
+    */
     func errorLblShow()
     {
         UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-            
             self.msgLblShow.alpha = 1.0
             self.view.userInteractionEnabled = false
             self.timer = NSTimer.scheduledTimerWithTimeInterval(1.2, target: self, selector:"update", userInfo:nil, repeats: false)
             }, completion: nil)
-        
-        
     }
+    /**
+    @brief This method is called when time of error message show completes .
+    */
     func update()
     {
-        
         UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-            
             self.msgLblShow.alpha = 0.0
             self.timer.invalidate()
             self.view.userInteractionEnabled = true
             }, completion: nil)
     }
+    /**
+    @brief This method is called to Pass Control to Next ViewController.
+    */
     @IBAction func nextBtnClicked(sender : AnyObject)
     {
-        
+        //validate that no field should be empty
         if coachNameTF.text == ""
         {
             msgLblShow.text = "Please enter coach name."
             self.errorLblShow()
-            
         }
         else if UserNameTF.text == ""
         {
             msgLblShow.text = "Please enter user name."
             self.errorLblShow()
-            
         }
         else if teamTF.text == ""
         {
             msgLblShow.text = "Please enter team name"
             self.errorLblShow()
-            
         }
         else if schoolTF.text == ""
         {
@@ -103,7 +115,8 @@ class SignUpFirst: UIViewController {
         }
         else
         {
-            var tempDict:NSMutableDictionary = NSMutableDictionary()
+            dataArray.removeAllObjects()
+            let tempDict:NSMutableDictionary = NSMutableDictionary()  //Data to send along with API
             tempDict .setObject(coachNameTF.text!, forKey: "coachName")
             tempDict .setObject(UserNameTF.text!, forKey: "userName")
             tempDict .setObject(teamTF.text!, forKey: "teamName")
@@ -111,28 +124,22 @@ class SignUpFirst: UIViewController {
             
             dataArray .addObject(tempDict)
             
-          //  let secondVC:UIViewController = self.storyboard?.instantiateViewControllerWithIdentifier("signUpSecond")! as SignUpSecond
-         //  self.performSegueWithIdentifier("FirstToSecond", sender: self)
-            
-            var secondVC = self.storyboard?.instantiateViewControllerWithIdentifier("signUpSecond") as! SignUpSecond
-            secondVC.receivedData = dataArray
+            let secondVC = self.storyboard?.instantiateViewControllerWithIdentifier("signUpSecond") as! SignUpSecond
+            secondVC.receivedData = dataArray    //Send Data to Next View Controller
             self.navigationController?.pushViewController(secondVC, animated: true)
             
         }
     }
     
+    //MARK:- UITextField Delegete Methods
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
         textField.resignFirstResponder()
         return true
-        
     }
     func textFieldDidBeginEditing(textField: UITextField)
     {
-        self.viewMoveUp(60.0)
-        
-
-        
+        self.viewMoveUp(60.0)   //Move View to Up
     }
     func textFieldDidEndEditing(textField: UITextField)
     {
@@ -140,13 +147,11 @@ class SignUpFirst: UIViewController {
         {
             coachNameTF.resignFirstResponder()
             UserNameTF.becomeFirstResponder()
-           
         }
         else if textField == UserNameTF
         {
             UserNameTF.resignFirstResponder()
             teamTF.becomeFirstResponder()
-            
         }
         else if textField == teamTF
         {
@@ -155,11 +160,13 @@ class SignUpFirst: UIViewController {
         }
         else
         {
-            self.viewMoveDown(60.0)
+            self.viewMoveDown(60.0)  //Move View to Down
             schoolTF.resignFirstResponder()
         }
     }
     
+    //MARK:- UIView Animation Methods
+    /** This method is used to Up the View when user press on any UITextField */
     func viewMoveUp(value:CGFloat){
         if (_MoveUp){
             UIView.animateWithDuration( 0.3 , animations:
@@ -171,10 +178,11 @@ class SignUpFirst: UIViewController {
             _MoveUp = false
         }
     }
+    /** This method is used to Down the View when user press on any UITextField */
     func viewMoveDown(value:CGFloat){
         if (!_MoveUp){
             UIView.animateWithDuration( 0.3 , animations:
-                {   //Perform animation to lift view upside
+                {   //Perform animation to lift view downSide
                     var f : CGRect  = self.view.bounds
                     f.origin.y -= value
                     self.view.bounds = f
@@ -183,6 +191,7 @@ class SignUpFirst: UIViewController {
             _MoveUp = true
         }
     }
+    //MARK:- Prepare For Segue Method
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         
         if (segue.identifier == "FirstToSecond") {

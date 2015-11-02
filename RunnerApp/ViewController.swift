@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  RunnerApp
 //
-//  Created by Steven Prescott on 9/17/15.
-//  Copyright (c) 2015 Steven Prescott. All rights reserved.
+//  Created by Prescott | Neshagaran on 9/17/15.
+//  Copyright (c) 2015 Prescott | Neshagaran. All rights reserved.
 //
 
 import UIKit
@@ -37,17 +37,19 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         sideTblArray .addObject("Sign In")
         sideTblArray.addObject("Sign Out")
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
-        self.navigationItem.setHidesBackButton(true, animated: false)
         self.addLoadingIndicator(view)
         super.viewDidLoad()
     }
     
     override func viewWillAppear(animated: Bool) {
-        
-        //self.navigationItem.leftBarButtonItem = nil
-        
+       self.navigationController?.setNavigationBarHidden(true, animated: false)
         super.viewWillAppear(animated);
         
+    }
+
+    override func viewWillDisappear(animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        super.viewWillDisappear(animated)
     }
 
     override func didReceiveMemoryWarning() {
@@ -110,14 +112,8 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     // MARK: SideViewMethod
     @IBAction func startSessionBtnClicked(sender : AnyObject)
     {
-        self.navigationItem.setHidesBackButton(false, animated: false)
-        
         let startSessionVC:UIViewController = self.storyboard?.instantiateViewControllerWithIdentifier("StartRun") as UIViewController!
-        
         self.navigationController?.pushViewController(startSessionVC, animated: true)
-        
-        
-        
     }
     @IBAction func logoutBtnClicked(sender : AnyObject)
     {
@@ -178,21 +174,20 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
       return cell
     }
     func dataFound(){
-        var isSuccess : Int = 1
+        let isSuccess : Int = 1
         activityIndicator.stopAnimating()
         
         if(dataFetchingCase == ApiResponseValue.RunnerListApiCalled.rawValue)
         {
             if ((jsonParsing.fetchedJsonResult["success"] as! Int)  == isSuccess )
             {
-               self.navigationItem.setHidesBackButton(false, animated: false) 
                 var tempArray:NSArray = NSArray()
                 tempArray = (jsonParsing.fetchedDataArray.objectAtIndex(0) as! NSArray)
                 let predicate =  NSPredicate(format: "role == %@", "2" )
                 
                 let allRunnerArray = tempArray.filteredArrayUsingPredicate(predicate)
             
-                var detailVC = self.storyboard?.instantiateViewControllerWithIdentifier("DetailVC") as! DetailViewController
+                let detailVC = self.storyboard?.instantiateViewControllerWithIdentifier("DetailVC") as! DetailViewController
                 detailVC.memberDetailArray.addObjectsFromArray(allRunnerArray)
                 self.navigationController?.pushViewController(detailVC, animated: true)
             }
@@ -205,7 +200,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         {
             if ((jsonParsing.fetchedJsonResult["success"] as! Int)  == isSuccess )
             {
-                var runStatVC = self.storyboard?.instantiateViewControllerWithIdentifier("RunnerStats") as! RunnerStatsVC
+                let runStatVC = self.storyboard?.instantiateViewControllerWithIdentifier("RunnerStats") as! RunnerStatsVC
                 runStatVC.runnnerStatArray.addObjectsFromArray(jsonParsing.fetchedDataArray.objectAtIndex(0) as! NSArray as [AnyObject])
                 self.navigationController?.pushViewController(runStatVC, animated: true)
             }
