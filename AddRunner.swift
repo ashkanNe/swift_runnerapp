@@ -1,8 +1,8 @@
 /**
 ￼@class AddRunner.swift
-￼@brief This file is used to ADD/Remove/Edit Runner.
-@discussion By default Add Runner Tab is selected.You can select other tab to Remove/Edit a runner.
-@author Prescott | Neshagaran
+This file is used to Add, Remove, or Edit the runners.
+By default the Add Runner Tab is selected. You can select another tab to Remove/Edit a runner.
+Prescott | Neshagaran
 @Copyright (c) 2015 Prescott | Neshagaran. All rights reserved.
 */
 import UIKit
