@@ -8,14 +8,14 @@ import UIKit
 
 class EditRunnerVC: UIViewController,JsonDelegete {
     
-    /** This is the UITextField Object which holds information of Runner */
+    /** This is the UITextField Object which holds the information of the runner */
     @IBOutlet var firstNameTF : UITextField!
     @IBOutlet var LastNameTF : UITextField!
     @IBOutlet var heightTF : UITextField!
     @IBOutlet var weightTF : UITextField!
     @IBOutlet var ageTF : UITextField!
     
-    /** This is the UILabel Object which is used to show alert message */
+    /** This is the UILabel Object which is used to show an alert message */
     @IBOutlet var msgLblShow : UILabel!
 
     
@@ -31,7 +31,7 @@ class EditRunnerVC: UIViewController,JsonDelegete {
     /** This is Boolean flag to hold information that View in currently Up or Down.*/
     var _MoveUp: Bool = true
  
-    /** This will hold the existing information of Runner.*/
+    /** This will hold the existing information of the runner.*/
     var dataReceived:NSMutableDictionary = NSMutableDictionary()
 
     /** This is the Object of "CustomActivityIndicatorView" Class to show custom Indicator View */
