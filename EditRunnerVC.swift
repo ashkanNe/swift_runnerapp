@@ -152,7 +152,7 @@ class EditRunnerVC: UIViewController,JsonDelegete {
         
     }
     
-  /** This method is called when timer completes and to hide erro label  */
+  /** This method is called when timer completes and to hide the error label  */
     func update()
     {
         UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {                       //Hide the message Label
