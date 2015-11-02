@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "442B75381BAA5F3D00FF4E0E"
-               BuildableName = "RunnerApp.app"
+               BuildableName = "RunnerApp.temp_caseinsensitive_rename.app"
                BlueprintName = "RunnerApp"
                ReferencedContainer = "container:RunnerApp.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "442B75501BAA5F3D00FF4E0E"
-               BuildableName = "RunnerAppTests.xctest"
+               BuildableName = "RunnerApp.temp_caseinsensitive_rename.xctest"
                BlueprintName = "RunnerAppTests"
                ReferencedContainer = "container:RunnerApp.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "442B75381BAA5F3D00FF4E0E"
-            BuildableName = "RunnerApp.app"
+            BuildableName = "RunnerApp.temp_caseinsensitive_rename.app"
             BlueprintName = "RunnerApp"
             ReferencedContainer = "container:RunnerApp.xcodeproj">
          </BuildableReference>
@@ -66,7 +66,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "442B75381BAA5F3D00FF4E0E"
-            BuildableName = "RunnerApp.app"
+            BuildableName = "RunnerApp.temp_caseinsensitive_rename.app"
             BlueprintName = "RunnerApp"
             ReferencedContainer = "container:RunnerApp.xcodeproj">
          </BuildableReference>
@@ -85,7 +85,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "442B75381BAA5F3D00FF4E0E"
-            BuildableName = "RunnerApp.app"
+            BuildableName = "RunnerApp.temp_caseinsensitive_rename.app"
             BlueprintName = "RunnerApp"
             ReferencedContainer = "container:RunnerApp.xcodeproj">
          </BuildableReference>
