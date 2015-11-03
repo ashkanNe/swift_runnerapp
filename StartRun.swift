@@ -88,7 +88,7 @@ class StartRun: UIViewController,JsonDelegete {
     
     //MARK:- Add bottom layer Method
     /**
-    @brief This method is used to add a layer at bottom to textField.
+    This method is used to add a layer at bottom to textField.
     */
     func addBottomLayer(textField: UITextField)
     {
@@ -100,7 +100,7 @@ class StartRun: UIViewController,JsonDelegete {
     
     //MARK:- Select Current Weather Condition Method
     /**
-    @brief This method is used to select the current weather condition.
+    This method is used to select the current weather condition.
     */
     @IBAction func selectWeatherConditionBtnClicked(sender : AnyObject)
     {
@@ -127,7 +127,7 @@ class StartRun: UIViewController,JsonDelegete {
     
     //MARK:- Select Runner Method
     /**
-    @brief This method is used to select the runner who take part in run.
+    This method is used to select the runner who take part in run.
     */
     @IBAction func selectRunnerBtnClicked(sender : AnyObject)
     {
