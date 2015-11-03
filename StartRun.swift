@@ -171,7 +171,7 @@ class StartRun: UIViewController,JsonDelegete {
     
     //MARK:- Show Error Message Method
     /**
-    @brief This method is used to show error message for some predefine time only.
+    This method is used to show error messages for some predefine time only.
     */
     func errorLblShow()
     {
@@ -183,7 +183,7 @@ class StartRun: UIViewController,JsonDelegete {
             }, completion: nil)
     }
     /**
-    @brief This method is called when time of error message show completes .
+    This method is called when time of the error message show completes .
     */
     func update()
     {
