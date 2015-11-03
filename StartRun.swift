@@ -1,8 +1,8 @@
 /**
 ￼@class StartRun.swift
-￼@brief This file is used to accept information about the Run Condition.
-@discussion In this user have to give the Run Name,Length,Weather conditions.Then have to select all the runners who take part in run by press Select Runner button.
-@author Prescott | Neshagaran
+￼This file is used to accept information about the Run Condition.
+In this user have to give the Run Name,Length,Weather conditions.Then have to select all the runners who take part in run by press Select Runner button.
+Prescott | Neshagaran
 @Copyright (c) 2015 Prescott | Neshagaran. All rights reserved.
 */
 
