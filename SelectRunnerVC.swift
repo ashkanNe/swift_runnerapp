@@ -1,8 +1,8 @@
 /**
-￼@class SelectRunnerVC.swift
-￼@brief This file is used to display list of all Runners and user can select any runner by tap on their name.
-@discussion We display the list of Runner in a UITableView object and user can select runner by tap on the runner name.
-@author Prescott | Neshagaran
+￼SelectRunnerVC.swift
+￼This file is used to display a list of all the runners and the user can select any runner by tap on their name.
+We display the list of Runner in a UITableView object and user can select runner by a tap on the runner's name.
+Prescott | Neshagaran
 @Copyright (c) 2015 Prescott | Neshagaran. All rights reserved.
 */
 
