@@ -1,7 +1,7 @@
 /**
 ￼@class SignIn.swift
-￼@brief This file is used to Login in the application,if user already registerd OR Sign Up As a new user.
-@author Prescott | Neshagaran
+This file is used to Login in the application,if user already registerd OR Sign Up As a new user.
+Prescott | Neshagaran
 @Copyright (c) 2015 Prescott | Neshagaran. All rights reserved.
 */
 

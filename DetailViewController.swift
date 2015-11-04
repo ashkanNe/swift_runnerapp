@@ -1,8 +1,8 @@
 /**
 ￼@class DetailViewController.swift
-￼@brief This file is used to all Runners list along with their Alias.
-@discussion We call an API to get updated list of all Runners and show in a UITableView
-@author Prescott | Neshagaran
+This file is used to all Runners list along with their Alias.
+We call an API to get updated list of all Runners and show in a UITableView
+Prescott | Neshagaran
 @Copyright (c) 2015 Prescott | Neshagaran. All rights reserved.
 */
 
