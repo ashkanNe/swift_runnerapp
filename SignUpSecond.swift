@@ -1,8 +1,8 @@
 /**
 ￼@class SignUpSecond.swift
-￼@brief This file is used to accept the Email and Password of the Coach.
-@discussion Firstly User add valid email,and password and confirm password.
-@author Prescott | Neshagaran
+This file is used to accept the Email and Password of the Coach.
+Firstly User add valid email,and password and confirm password.
+Prescott | Neshagaran
 @Copyright (c) 2015 Prescott | Neshagaran. All rights reserved.
 */
 
@@ -10,7 +10,7 @@ import UIKit
 
 class SignUpSecond: UIViewController,JsonDelegete {
     
-    /* This is the UITextField Object which holds Email,Password and Confirm Password of Coach */
+    /* This is the UITextField Object which holds the Email, Password and Confirm Password of the Coach */
     @IBOutlet var emailTF : UITextField!
     @IBOutlet var passWdTF : UITextField!
     @IBOutlet var confirmPassWdTF : UITextField!
@@ -72,7 +72,7 @@ class SignUpSecond: UIViewController,JsonDelegete {
             }, completion: nil)
     }
     /**
-    @brief This method is called when time of error message show completes .
+    This method is called when time of error message show completes .
     */
     func update()
     {
@@ -255,7 +255,7 @@ class SignUpSecond: UIViewController,JsonDelegete {
             }
         }
     }
-    /** This is the Delegete Method of NSURLConnection Class,and get called when we there is some problem in data receiving */
+    /** This is the Delegete Method of NSURLConnection Class, and gets called when we there is some problem in data receiving */
     func connectionInterruption(){
         
     }
