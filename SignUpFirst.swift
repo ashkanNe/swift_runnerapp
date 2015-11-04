@@ -1,8 +1,8 @@
 /**
 ￼@class SignUpFirst.swift
-￼@brief This file is used to accept the information of the Coach.
-@discussion User add Coach Name,User Name,Team Name,School Name of the Coach.
-@author Prescott | Neshagaran
+This file is used to accept the information of the Coach.
+User add Coach Name,User Name,Team Name,School Name of the Coach.
+Prescott | Neshagaran
 @Copyright (c) 2015 Prescott | Neshagaran. All rights reserved.
 */
 
@@ -10,7 +10,7 @@ import UIKit
 
 class SignUpFirst: UIViewController {
 
-    /* This is the UITextField Object which holds Email,Password and Confirm Password of Coach */
+    /* This is the UITextField Object which holds the Email, Password and Confirm Password of the Coach */
     @IBOutlet var coachNameTF : UITextField!
     @IBOutlet var UserNameTF : UITextField!
     @IBOutlet var teamTF : UITextField!
@@ -23,7 +23,7 @@ class SignUpFirst: UIViewController {
     @IBOutlet var nextBtn : UIButton!
     var timer : NSTimer = NSTimer()
  
-    /** This is NSMutableArray Object which hold information of Runner.*/
+    /** This is NSMutableArray Object which holds information of Runner.*/
     var dataArray:NSMutableArray = NSMutableArray()
     
     lazy private var activityIndicator : CustomActivityIndicatorView = {
@@ -66,7 +66,7 @@ class SignUpFirst: UIViewController {
     
     //MARK:- Show Error Message Method
     /**
-    @brief This method is used to show error message for some predefine time only.
+    This method is used to show error message for some predefine time only.
     */
     func errorLblShow()
     {
@@ -77,7 +77,7 @@ class SignUpFirst: UIViewController {
             }, completion: nil)
     }
     /**
-    @brief This method is called when time of error message show completes .
+    This method is called when time of error message show completes .
     */
     func update()
     {
@@ -88,7 +88,7 @@ class SignUpFirst: UIViewController {
             }, completion: nil)
     }
     /**
-    @brief This method is called to Pass Control to Next ViewController.
+    This method is called to Pass Control to Next ViewController.
     */
     @IBAction func nextBtnClicked(sender : AnyObject)
     {
