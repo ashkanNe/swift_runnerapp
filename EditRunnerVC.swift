@@ -15,7 +15,7 @@ class EditRunnerVC: UIViewController,JsonDelegete {
     @IBOutlet var heightTF : UITextField!
     @IBOutlet var weightTF : UITextField!
     @IBOutlet var ageTF : UITextField!
-    @IBOutlet var schoolyearTF : UITextField!
+
     
     /** This is the UILabel Object which is used to show an alert message */
     @IBOutlet var msgLblShow : UILabel!
@@ -56,7 +56,7 @@ class EditRunnerVC: UIViewController,JsonDelegete {
         heightTF.text = String(format: "%@", dataReceived.objectForKey("height") as! String)
         weightTF.text = String(format: "%@", dataReceived.objectForKey("weight") as! String)
         ageTF.text = String(format: "%d", dataReceived.objectForKey("age") as! Int)
-        schoolyearTF.text = String(format: "%d", dataReceived.objectForKey("age") as! Int)
+       
         
         //Add Custom Indicator on View.
         self.addLoadingIndicator(view)
@@ -97,11 +97,6 @@ class EditRunnerVC: UIViewController,JsonDelegete {
             msgLblShow.text = "Please enter your age"
             self.errorLblShow()
         }
-        else if schoolyearTF.text == ""
-        {
-            msgLblShow.text = "Please enter your school year"
-            self.errorLblShow()
-        }
         else{
             let data = NSMutableDictionary()      //Data to send along with API
             data.setValue("not available", forKey: "userid")
@@ -113,7 +108,6 @@ class EditRunnerVC: UIViewController,JsonDelegete {
             data.setValue(weightTF.text, forKey: "weight")
             data.setValue(heightTF.text, forKey: "height")
             data.setValue(ageTF.text, forKey: "age")
-            data.setValue(schoolyearTF.text, forKey: "schoolyear")
             data.setValue("0000-00-00 00:00:00", forKey: "dob")
             data.setValue("not available", forKey: "school")
             data.setValue("not available", forKey: "team")

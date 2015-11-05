@@ -15,7 +15,7 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate {
     @IBOutlet var heightTF : UITextField!
     @IBOutlet var weightTF : UITextField!
     @IBOutlet var ageTF : UITextField!
-    @IBOutlet var schoolyearTF : UITextField!
+ 
     
     /** This is the UILabel Object which is used to show alert message */
     @IBOutlet var alertMsgLbl : UILabel!
@@ -67,7 +67,7 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate {
         self.addBottomLayer(heightTF)
         self.addBottomLayer(weightTF)
         self.addBottomLayer(ageTF)
-        self.addBottomLayer(schoolyearTF)
+        
         
         doneBtn.layer.cornerRadius = 4.0
         self.addLoadingIndicator(view)
@@ -208,11 +208,6 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate {
             msgLblShow.text = "Please enter age"
             self.errorLblShow()
         }
-        else if schoolyearTF.text == ""
-        {
-            msgLblShow.text = "Please enter school year"
-            self.errorLblShow()
-        }
         else
         {
             let firstIndex = firstNameTF.text!.startIndex        //Find Initials of the Runner Name
@@ -230,7 +225,6 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate {
             data.setValue(weightTF.text, forKey: "weight")
             data.setValue(heightTF.text, forKey: "height")
             data.setValue(ageTF.text, forKey: "age")
-            data.setValue(schoolyearTF.text, forKey: "schoolyear")
             data.setValue("0000-00-00 00:00:00", forKey: "dob")
             data.setValue("not available", forKey: "school")
             data.setValue("not available", forKey: "team")
