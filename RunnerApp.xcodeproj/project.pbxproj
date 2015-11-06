@@ -40,6 +40,7 @@
 		44C404F01BBE91310079F5C0 /* RunnerStatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C404EF1BBE91310079F5C0 /* RunnerStatsVC.swift */; };
 		44C5028B1BB7A735002ABF83 /* AddRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C5028A1BB7A735002ABF83 /* AddRunner.swift */; };
 		44C502911BB83CB7002ABF83 /* RunLapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C502901BB83CB7002ABF83 /* RunLapVC.swift */; };
+		60B226AA1BEC304900D88B65 /* license.md in Sources */ = {isa = PBXBuildFile; fileRef = 60B226A91BEC304900D88B65 /* license.md */; };
 		EAE961251BB0FFD7009E373E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE961241BB0FFD7009E373E /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -98,6 +99,7 @@
 		44C404EF1BBE91310079F5C0 /* RunnerStatsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = RunnerStatsVC.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		44C5028A1BB7A735002ABF83 /* AddRunner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AddRunner.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		44C502901BB83CB7002ABF83 /* RunLapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = RunLapVC.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		60B226A91BEC304900D88B65 /* license.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = license.md; sourceTree = "<group>"; };
 		EAE961241BB0FFD7009E373E /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DetailViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
@@ -122,6 +124,7 @@
 		442B75301BAA5F3D00FF4E0E = {
 			isa = PBXGroup;
 			children = (
+				60B226A91BEC304900D88B65 /* license.md */,
 				4495D2E61BB66589005D5662 /* loading.png */,
 				4495D2E41BB6653B005D5662 /* CustomActivityIndicatorView.swift */,
 				4495D2DD1BB65755005D5662 /* Images */,
@@ -354,6 +357,7 @@
 				44C404F01BBE91310079F5C0 /* RunnerStatsVC.swift in Sources */,
 				4495D2D01BB64889005D5662 /* SBJsonBase.m in Sources */,
 				44C404EE1BBE8DDE0079F5C0 /* RunnerStatsCell.swift in Sources */,
+				60B226AA1BEC304900D88B65 /* license.md in Sources */,
 				442B75441BAA5F3D00FF4E0E /* ViewController.swift in Sources */,
 				EAE961251BB0FFD7009E373E /* DetailViewController.swift in Sources */,
 				442B753F1BAA5F3D00FF4E0E /* AppDelegate.swift in Sources */,
