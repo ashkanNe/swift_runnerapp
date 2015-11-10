@@ -4,7 +4,7 @@
 //
 //  Created by Prescott | Neshagaran on 9/17/15.
 //  Copyright (c) 2015 Prescott | Neshagaran. All rights reserved.
-//
+
 
 import UIKit
 
@@ -16,6 +16,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     @IBOutlet var startSessionBtn : UIButton!
     @IBOutlet var enrolledRunnerBtn : UIButton!
     @IBOutlet var runnerStatsBtn : UIButton!
+    @IBOutlet var coachNameLbl : UILabel!
     var dataToSend = NSString()
     let jsonParsing = JsonParsing(nibName:"JsonParsing.swift", bundle: nil)
     var dataFetchingCase : Int = -1
@@ -38,6 +39,9 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         sideTblArray.addObject("Sign Out")
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         self.addLoadingIndicator(view)
+        let welcomeString:NSMutableString = "Welcome "
+        welcomeString.appendString((NSUserDefaults.standardUserDefaults().valueForKey("coach_name") as? String)!)
+        coachNameLbl.text = welcomeString as String
         super.viewDidLoad()
     }
     
@@ -138,12 +142,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         jsonParsing.jpdelegate = self
         dataFetchingCase = ApiResponseValue.RunnerStatApiCalled.rawValue
         activityIndicator.startAnimating()
-        
-        
-        
-       
     }
-    
 // MARK
 // MARK: UITableViewDelegateMethods
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int)  -> Int

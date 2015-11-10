@@ -54,12 +54,12 @@ class RunnerStatsVC: UIViewController,UICollectionViewDataSource,UICollectionVie
         
         return cell
     }
-    func collectionView(collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-            let kWhateverHeightYouWant:CGFloat = 150.0
-            return CGSizeMake(collectionView.bounds.size.width/3, kWhateverHeightYouWant)
-    }
+//    func collectionView(collectionView: UICollectionView,
+//        layout collectionViewLayout: UICollectionViewLayout,
+//        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+//            let kWhateverHeightYouWant:CGFloat = 150.0
+//            return CGSizeMake(collectionView.bounds.size.width/3, kWhateverHeightYouWant)
+//    }
     
 
     /*

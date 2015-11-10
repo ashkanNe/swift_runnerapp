@@ -64,6 +64,8 @@ class JsonParsing: UIViewController {
         {
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+           // request.addValue("no-cache", forHTTPHeaderField: "Cache-Control")
+            
         }
         print("URL Request is : \(request)")
         theConnection = NSURLConnection(request: request, delegate: self, startImmediately: true)!

@@ -258,7 +258,25 @@ class EditRunnerVC: UIViewController,JsonDelegete {
         return true
         
     }
- 
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        if textField == weightTF || textField == heightTF  {
+            let inverseSet = NSCharacterSet(charactersInString:"0123456789.").invertedSet
+            
+            let components = string.componentsSeparatedByCharactersInSet(inverseSet)
+            
+            let filtered = components.joinWithSeparator("")
+            let countdots = textField.text!.componentsSeparatedByString(".").count - 1
+            
+            if countdots > 0 && string == "."
+            {
+                return false
+            }
+            return string == filtered
+        }
+        return true
+        
+    }
     
      //MARK:- NSURLConnection Delegete Methods
     /** This is the Delegete Method of NSURLConnection Class,and gets called when we receive response of API */

@@ -14,7 +14,7 @@ class StartRun: UIViewController,JsonDelegete {
     @IBOutlet var milesTF : UITextField!
     @IBOutlet var feetTF : UITextField!
     @IBOutlet var runNameTF : UITextField!
-    
+    @IBOutlet var tempTF : UITextField!
     
     @IBOutlet var selectRunnerBtn : UIButton!
     @IBOutlet var weatherConditionBtn : UIButton!
@@ -53,6 +53,7 @@ class StartRun: UIViewController,JsonDelegete {
         self.addBottomLayer(milesTF)
         self.addBottomLayer(feetTF)
         self.addBottomLayer(runNameTF)
+        self.addBottomLayer(tempTF)
         
         addLoadingIndicator(self.view)
         
@@ -84,6 +85,7 @@ class StartRun: UIViewController,JsonDelegete {
     {
         milesTF.resignFirstResponder()
         feetTF.resignFirstResponder()
+        tempTF.resignFirstResponder()
     }
     
     //MARK:- Add bottom layer Method
@@ -148,6 +150,11 @@ class StartRun: UIViewController,JsonDelegete {
             msgLblShow.text = "Please enter run feet."
             self.errorLblShow()
         }
+        else if(tempTF.text == "")
+        {
+            msgLblShow.text = "Please enter temprature in fahrenheit."
+            self.errorLblShow()
+        }
         else{
             
             let runLength:NSMutableString = NSMutableString()  //Make a string of RunLength
@@ -158,6 +165,7 @@ class StartRun: UIViewController,JsonDelegete {
             
             runDetailDict.setObject(runNameTF.text!, forKey: "runName")    //Store Run Conditions for future use.
             runDetailDict.setObject(runLength, forKey: "runLength")
+            runDetailDict.setObject(tempTF.text!, forKey: "temprature")
             runDetailDict.setObject(currentWeatherCondition, forKey: "weatherCondition")
             
             //Call API to get updated list of all runners
@@ -204,13 +212,10 @@ class StartRun: UIViewController,JsonDelegete {
         let array:NSArray = [doneItem]
         toolbar.items = array as? [UIBarButtonItem]
         toolbar.sizeToFit()
-        if textField == milesTF{
-            milesTF.inputAccessoryView = toolbar
+        if textField == milesTF || textField == feetTF || textField == tempTF{
+            textField.inputAccessoryView = toolbar
         }
-        else
-        {
-            feetTF.inputAccessoryView = toolbar
-        }
+        
     }
     
     func textFieldDidEndEditing(textField: UITextField)
@@ -221,6 +226,25 @@ class StartRun: UIViewController,JsonDelegete {
     {
         textField.resignFirstResponder()
         return true
+    }
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        if textField == milesTF || textField == feetTF || textField == tempTF {
+            let inverseSet = NSCharacterSet(charactersInString:"0123456789.").invertedSet
+            
+            let components = string.componentsSeparatedByCharactersInSet(inverseSet)
+            
+            let filtered = components.joinWithSeparator("")
+            let countdots = textField.text!.componentsSeparatedByString(".").count - 1
+            
+            if countdots > 0 && string == "."
+            {
+                return false
+            }
+            return string == filtered
+        }
+        return true
+        
     }
     
     
@@ -241,7 +265,7 @@ class StartRun: UIViewController,JsonDelegete {
             self.navigationController?.pushViewController(selectRunnerVC, animated: true)
         }
         else{
-            msgLblShow.text = "Your email or password is incorrect"
+            msgLblShow.text = "There is a problem,Please try later."
             self.errorLblShow()
         }
     }
@@ -259,4 +283,16 @@ class StartRun: UIViewController,JsonDelegete {
     }
     */
 
+}
+class ButtonExtender: UIButton {
+    @IBInspectable var borderColor: UIColor = UIColor.whiteColor() {
+        didSet {
+            layer.borderColor = borderColor.CGColor
+        }
+    }
+    @IBInspectable var cornerRadius: CGFloat = 0 {
+        didSet {
+            layer.cornerRadius = cornerRadius
+        }
+    }
 }

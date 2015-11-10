@@ -107,12 +107,12 @@ class SignIn: UIViewController,UITextFieldDelegate,JsonDelegete {
             self.errorLblShow()
             
         }
-//        else if (isValidEmail(userNameTF.text!) == false)
-//        {
-//            msgLblShow.text = "Please enter a valid Email-id"
-//            self.errorLblShow()
-//            
-//        }
+        else if (isValidEmail(userNameTF.text!) == false)
+        {
+            msgLblShow.text = "Please enter a valid Email-id"
+            self.errorLblShow()
+            
+        }
         else if passwordTF.text == ""
         {
             msgLblShow.text = "Please enter your password"

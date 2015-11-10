@@ -164,6 +164,7 @@ class RunLapVC: UIViewController,JsonDelegete {
         runDetail.setValue(runDetailDict.valueForKey("runName"), forKey: "name")
         runDetail.setValue(runDetailDict.valueForKey("runLength"), forKey: "length")
         runDetail.setValue(runDetailDict.valueForKey("weatherCondition"), forKey: "weather")
+    //    runDetail.setValue(runDetailDict.valueForKey("temprature"), forKey: "temprature")
         runDetail.setValue(coach_id, forKey: "coach_id")
         
         for (var i = 0 ; i < runnerListArray.count ; i++ )

@@ -129,6 +129,9 @@ class SignUpSecond: UIViewController,JsonDelegete {
             NSUserDefaults.standardUserDefaults().setValue(passWdTF.text, forKey: "password") //store Email for permanent storage
 
             NSUserDefaults.standardUserDefaults().synchronize()
+        NSUserDefaults.standardUserDefaults().setValue(receivedData.objectAtIndex(0).valueForKey("coachName"), forKey: "coach_name") //store Coach Name for permanent storage
+            
+            NSUserDefaults.standardUserDefaults().synchronize()
             
             let data = NSMutableDictionary()    //Data to send along with API
             if (receivedData.count > 0) {
