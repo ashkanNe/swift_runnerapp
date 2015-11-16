@@ -12,6 +12,7 @@ class DetailViewController: UIViewController,JsonDelegete {
     
      @IBOutlet var memberDetailTblView : UITableView!
      @IBOutlet var addRunnerBtn : UIButton!
+     @IBOutlet var teamNameLbl : UILabel!
     
      /** This is the Object of NSMutableArray which is used to hold list of all Runners. */
      var memberDetailArray:NSMutableArray = NSMutableArray()
@@ -32,6 +33,10 @@ class DetailViewController: UIViewController,JsonDelegete {
         self.navigationItem.title = "Team Members"
         self.addLoadingIndicator(view)
          self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+        let teamNameString:NSMutableString = "My Team: "
+        teamNameString.appendString((NSUserDefaults.standardUserDefaults().valueForKey("coach_team") as? String)!)
+        teamNameLbl.text = teamNameString as String
+        
         self.automaticallyAdjustsScrollViewInsets = false
         memberDetailTblView.reloadData()
     }

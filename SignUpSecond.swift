@@ -55,7 +55,7 @@ class SignUpSecond: UIViewController,JsonDelegete {
     func addLoadingIndicator (tempView : UIView)
     {
         tempView.addSubview(activityIndicator)
-        activityIndicator.center = self.msgLblShow.center
+        activityIndicator.center = self.view.center
         
     }
     
@@ -238,8 +238,15 @@ class SignUpSecond: UIViewController,JsonDelegete {
             {
                 let access_token: NSString? = jsonParsing.fetchedDataArray.objectAtIndex(0)["access_token"] as? String
                 let coach_id: Int? = jsonParsing.fetchedDataArray.objectAtIndex(0)["id"] as? Int  //Get unique Coach ID.
+                
+                let coach_team: String? = jsonParsing.fetchedDataArray.objectAtIndex(0)["team"] as? String
+                
                 NSUserDefaults.standardUserDefaults().setValue(String(format: "%d", coach_id!), forKey: "coach_id") //Save Caoch ID for further use.
                 NSUserDefaults.standardUserDefaults().synchronize()
+                
+                NSUserDefaults.standardUserDefaults().setValue(String(format: "%@", coach_team!), forKey: "coach_team") //Save Caoch ID for further use.
+                NSUserDefaults.standardUserDefaults().synchronize()
+                
                 NSUserDefaults.standardUserDefaults().setValue(access_token, forKey: "access_token")
                 NSUserDefaults.standardUserDefaults().synchronize()
                 NSUserDefaults.standardUserDefaults().setValue("false", forKey: "logout")

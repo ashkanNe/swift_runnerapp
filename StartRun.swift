@@ -15,6 +15,7 @@ class StartRun: UIViewController,JsonDelegete {
     @IBOutlet var feetTF : UITextField!
     @IBOutlet var runNameTF : UITextField!
     @IBOutlet var tempTF : UITextField!
+    @IBOutlet var numOfLapsTF : UITextField!
     
     @IBOutlet var selectRunnerBtn : UIButton!
     @IBOutlet var weatherConditionBtn : UIButton!
@@ -86,6 +87,7 @@ class StartRun: UIViewController,JsonDelegete {
         milesTF.resignFirstResponder()
         feetTF.resignFirstResponder()
         tempTF.resignFirstResponder()
+        numOfLapsTF.resignFirstResponder()
     }
     
     //MARK:- Add bottom layer Method
@@ -108,19 +110,19 @@ class StartRun: UIViewController,JsonDelegete {
     {
         //Change the background color of selected weather condition button.
         if (sender.tag == 1){
-            sunnyConditionBtn.backgroundColor = UIColor(red: 33.0/255.0, green: 87.0/255.0, blue: 161.0/255.0, alpha: 1.0)
+            sunnyConditionBtn.backgroundColor = UIColor(red: 33.0/255.0, green: 130.0/255.0, blue: 190.0/255.0, alpha: 1.0)
             foggyConditionBtn.backgroundColor = UIColor(red: 170.0/255.0, green: 170.0/255.0, blue: 170.0/255.0, alpha: 1.0)
             cloudyConditionBtn.backgroundColor = UIColor(red: 170.0/255.0, green: 170.0/255.0, blue: 170.0/255.0, alpha: 1.0)
             currentWeatherCondition.setString("sunny")
         }
         else if(sender.tag == 2){
-            cloudyConditionBtn.backgroundColor = UIColor(red: 33.0/255.0, green: 87.0/255.0, blue: 161.0/255.0, alpha: 1.0)
+            cloudyConditionBtn.backgroundColor = UIColor(red: 33.0/255.0, green: 130.0/255.0, blue: 190.0/255.0, alpha: 1.0)
             foggyConditionBtn.backgroundColor = UIColor(red: 170.0/255.0, green: 170.0/255.0, blue: 170.0/255.0, alpha: 1.0)
             sunnyConditionBtn.backgroundColor = UIColor(red: 170.0/255.0, green: 170.0/255.0, blue: 170.0/255.0, alpha: 1.0)
             currentWeatherCondition.setString("cloudy")
         }
         else{
-            foggyConditionBtn.backgroundColor = UIColor(red: 33.0/255.0, green: 87.0/255.0, blue: 161.0/255.0, alpha: 1.0)
+            foggyConditionBtn.backgroundColor = UIColor(red: 33.0/255.0, green: 130.0/255.0, blue: 190.0/255.0, alpha: 1.0)
             cloudyConditionBtn.backgroundColor = UIColor(red: 170.0/255.0, green: 170.0/255.0, blue: 170.0/255.0, alpha: 1.0)
             sunnyConditionBtn.backgroundColor = UIColor(red: 170.0/255.0, green: 170.0/255.0, blue: 170.0/255.0, alpha: 1.0)
            currentWeatherCondition.setString("foggy")
@@ -155,6 +157,11 @@ class StartRun: UIViewController,JsonDelegete {
             msgLblShow.text = "Please enter temprature in fahrenheit."
             self.errorLblShow()
         }
+        else if(numOfLapsTF.text == "")
+        {
+            msgLblShow.text = "Please enter number of laps in run."
+            self.errorLblShow()
+        }
         else{
             
             let runLength:NSMutableString = NSMutableString()  //Make a string of RunLength
@@ -166,6 +173,7 @@ class StartRun: UIViewController,JsonDelegete {
             runDetailDict.setObject(runNameTF.text!, forKey: "runName")    //Store Run Conditions for future use.
             runDetailDict.setObject(runLength, forKey: "runLength")
             runDetailDict.setObject(tempTF.text!, forKey: "temprature")
+            runDetailDict.setObject(numOfLapsTF.text!, forKey: "lapCount")
             runDetailDict.setObject(currentWeatherCondition, forKey: "weatherCondition")
             
             //Call API to get updated list of all runners
@@ -212,7 +220,7 @@ class StartRun: UIViewController,JsonDelegete {
         let array:NSArray = [doneItem]
         toolbar.items = array as? [UIBarButtonItem]
         toolbar.sizeToFit()
-        if textField == milesTF || textField == feetTF || textField == tempTF{
+        if textField == milesTF || textField == feetTF || textField == tempTF || textField == numOfLapsTF{
             textField.inputAccessoryView = toolbar
         }
         
@@ -284,15 +292,4 @@ class StartRun: UIViewController,JsonDelegete {
     */
 
 }
-class ButtonExtender: UIButton {
-    @IBInspectable var borderColor: UIColor = UIColor.whiteColor() {
-        didSet {
-            layer.borderColor = borderColor.CGColor
-        }
-    }
-    @IBInspectable var cornerRadius: CGFloat = 0 {
-        didSet {
-            layer.cornerRadius = cornerRadius
-        }
-    }
-}
+

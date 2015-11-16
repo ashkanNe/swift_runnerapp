@@ -17,6 +17,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     @IBOutlet var enrolledRunnerBtn : UIButton!
     @IBOutlet var runnerStatsBtn : UIButton!
     @IBOutlet var coachNameLbl : UILabel!
+    @IBOutlet var coachImageView : UIImageView!
     var dataToSend = NSString()
     let jsonParsing = JsonParsing(nibName:"JsonParsing.swift", bundle: nil)
     var dataFetchingCase : Int = -1
@@ -39,9 +40,13 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         sideTblArray.addObject("Sign Out")
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         self.addLoadingIndicator(view)
-        let welcomeString:NSMutableString = "Welcome "
+        let welcomeString:NSMutableString = "Hi again, "
         welcomeString.appendString((NSUserDefaults.standardUserDefaults().valueForKey("coach_name") as? String)!)
+        welcomeString.appendString(" !")
         coachNameLbl.text = welcomeString as String
+        
+        coachImageView.layer.cornerRadius = 50.0
+        coachImageView.clipsToBounds = true
         super.viewDidLoad()
     }
     

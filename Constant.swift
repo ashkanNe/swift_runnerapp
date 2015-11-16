@@ -39,6 +39,9 @@ let baseUrl = "http://runnerappusa.azurewebsites.net/api/web/index.php/v1/" // d
 
 //http://oips.org/runnerapp/api/web/v1/runs
 
+//http://runnerappusa.azurewebsites.net/api/web/index.php/v1/users/forgetpassword
+
+
 
 var LoginApi = String(baseUrl + "users/login?")
 var RunnerListApi = String(baseUrl + "users")
@@ -47,3 +50,5 @@ var RemoveRunnerApi = String(baseUrl + "users/remove?")
 var EditRunnerApi = String(baseUrl + "users/updateprofile?")
 var RunStatApi = String(baseUrl + "runs")
 var AddRunApi = String(baseUrl + "runs")
+var ForgetPasswordApi = String(baseUrl + "users/forgetpassword")
+

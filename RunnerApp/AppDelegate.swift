@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.statusBarHidden = true
         let navigationController = application.windows[0].rootViewController as! UINavigationController
        
+        
         //Register For Remote Notification
         let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)
@@ -31,7 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         {
             NSUserDefaults.standardUserDefaults().setValue("true", forKey: "logout")
             NSUserDefaults.standardUserDefaults().synchronize()
-            
         }
         
         if((NSUserDefaults.standardUserDefaults().valueForKey("logout")) as? NSString == "true")
@@ -41,7 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         else
         {
             let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let homeVC:UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("HomeScreen") as! UIViewController
+         //   let homeVC:UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("HomeScreen") as! UIViewController
+            let homeVC:UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("HomeScreen") 
             navigationController.pushViewController(homeVC, animated: true)
             
             

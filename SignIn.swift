@@ -16,6 +16,7 @@ class SignIn: UIViewController,UITextFieldDelegate,JsonDelegete {
     
      @IBOutlet var loginBtn : UIButton!
      @IBOutlet var signUpBtn : UIButton!
+     @IBOutlet var forgotPasswdBtn : UIButton!
      @IBOutlet var loadingIndicator : UIActivityIndicatorView!
      @IBOutlet var loadingView : UIView!
      @IBOutlet var msgLblShow : UILabel!
@@ -42,11 +43,16 @@ class SignIn: UIViewController,UITextFieldDelegate,JsonDelegete {
     override func viewDidLoad() {
         super.viewDidLoad()
        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
-       self.navigationItem.setHidesBackButton(true, animated: false)
-        self.navigationItem.title = "Runner App"
+        self.navigationItem.setHidesBackButton(true, animated: false)
+       // navigationController!.navigationBar.barTintColor = UIColor(red: 100.0/255.0, green: 119.0/255.0, blue: 149.0/255.0, alpha:1.0)
+        self.navigationItem.title = "Runner Out of Time"
+        navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+
         addLoadingIndicator(self.view)
         self.addBottomLayer(userNameTF)
         self.addBottomLayer(passwordTF)
+        self.addBottomLayer(forgotPasswdBtn)
+        self.addBottomLayer(signUpBtn)
         msgLblShow.layer.masksToBounds = true
         msgLblShow.layer.cornerRadius = 4.0
         loginBtn.layer.cornerRadius = 4.0
@@ -65,12 +71,13 @@ class SignIn: UIViewController,UITextFieldDelegate,JsonDelegete {
     }
  
     //MARK:- Add a bottom layer Method
-    func addBottomLayer(textField: UITextField)
+    func addBottomLayer(object:AnyObject)
     {
         let bottomBorder = CALayer()
-        bottomBorder.frame = CGRectMake(0.0, textField.frame.size.height - 1, textField.frame.size.width, 1.0);
-        bottomBorder.backgroundColor = UIColor(red: 100.0/255.0, green: 100.0/255.0, blue: 100.0/255.0, alpha: 1.0).CGColor
-        textField.layer.addSublayer(bottomBorder)
+        bottomBorder.frame = CGRectMake(0.0, object.frame.size.height - 1, object.frame.size.width, 1.0);
+     //   bottomBorder.backgroundColor = UIColor(red: 100.0/255.0, green: 100.0/255.0, blue: 100.0/255.0, alpha: 1.0).CGColor
+        bottomBorder.backgroundColor = UIColor.whiteColor().CGColor
+        object.layer.addSublayer(bottomBorder)
     }
     
     //MARK:- Show Error Message Method
@@ -237,4 +244,17 @@ class SignIn: UIViewController,UITextFieldDelegate,JsonDelegete {
     }
     */
 
+}
+
+class ButtonFormatting: UIButton {
+    @IBInspectable var borderColor: UIColor = UIColor.whiteColor() {
+        didSet {
+            layer.borderColor = borderColor.CGColor
+        }
+    }
+    @IBInspectable var cornerRadius: CGFloat = 0 {
+        didSet {
+            layer.cornerRadius = cornerRadius
+        }
+    }
 }
