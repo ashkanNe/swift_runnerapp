@@ -51,6 +51,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     }
     
     override func viewWillAppear(animated: Bool) {
+        
        self.navigationController?.setNavigationBarHidden(true, animated: false)
         super.viewWillAppear(animated);
         
@@ -136,8 +137,15 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     }
     @IBAction func enrolledRunnerBtnClicked(sender : AnyObject)
     {
+        self.view.userInteractionEnabled = false
+        self.view.alpha = 0.7
+//let coach_id = NSUserDefaults.standardUserDefaults().valueForKey("coach_id")
+ //       let data = NSMutableDictionary()     //Data to send along with API
+  //      data.setValue(coach_id, forKey: "userid")
+   //     dataToSend  = data.JSONRepresentation()
         jsonParsing.loadData("GET", url: RunnerListApi, isHeader: true,throughAccessToken : false,dataToSend : dataToSend as String,sendData : true)
         jsonParsing.jpdelegate = self
+
         dataFetchingCase = ApiResponseValue.RunnerListApiCalled.rawValue
         activityIndicator.startAnimating()
     }
@@ -145,6 +153,9 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     {
         jsonParsing.loadData("GET", url: RunStatApi, isHeader: true,throughAccessToken : false,dataToSend : dataToSend as String,sendData : false)
         jsonParsing.jpdelegate = self
+        self.view.userInteractionEnabled = false
+        self.view.alpha = 0.7
+
         dataFetchingCase = ApiResponseValue.RunnerStatApiCalled.rawValue
         activityIndicator.startAnimating()
     }
@@ -180,25 +191,28 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     func dataFound(){
         let isSuccess : Int = 1
         activityIndicator.stopAnimating()
-        
+        self.view.userInteractionEnabled = true
+        self.view.alpha = 1.0
+
         if(dataFetchingCase == ApiResponseValue.RunnerListApiCalled.rawValue)
         {
+            let allRunnerArray:NSMutableArray = NSMutableArray()
+            
             if ((jsonParsing.fetchedJsonResult["success"] as! Int)  == isSuccess )
             {
                 var tempArray:NSArray = NSArray()
                 tempArray = (jsonParsing.fetchedDataArray.objectAtIndex(0) as! NSArray)
                 let predicate =  NSPredicate(format: "role == %@", "2" )
                 
-                let allRunnerArray = tempArray.filteredArrayUsingPredicate(predicate)
-            
-                let detailVC = self.storyboard?.instantiateViewControllerWithIdentifier("DetailVC") as! DetailViewController
-                detailVC.memberDetailArray.addObjectsFromArray(allRunnerArray)
-                self.navigationController?.pushViewController(detailVC, animated: true)
+                 allRunnerArray .addObjectsFromArray(tempArray.filteredArrayUsingPredicate(predicate))
             }
             else{
                // msgLblShow.text = ""
                // self.errorLblShow()
             }
+            let detailVC = self.storyboard?.instantiateViewControllerWithIdentifier("DetailVC") as! DetailViewController
+            detailVC.memberDetailArray.addObjectsFromArray(allRunnerArray as [AnyObject])
+            self.navigationController?.pushViewController(detailVC, animated: true)
         }
         else  if(dataFetchingCase == ApiResponseValue.RunnerStatApiCalled.rawValue)
         {
@@ -208,10 +222,28 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
                 runStatVC.runnnerStatArray.addObjectsFromArray(jsonParsing.fetchedDataArray.objectAtIndex(0) as! NSArray as [AnyObject])
                 self.navigationController?.pushViewController(runStatVC, animated: true)
             }
+            else
+            {
+                if(jsonParsing.fetchedJsonResult["data"]?.count > 0){
+                //let message = jsonParsing.fetchedJsonResult.valueForKey("data")?.valueForKey("message") as! String
+                let alert = UIAlertView(title: "Alert", message: "No Record Found.", delegate: nil, cancelButtonTitle: "OK")
+                alert.show()
+                activityIndicator.stopAnimating()
+                self.view.userInteractionEnabled = true
+                self.view.alpha = 1.0
+                }
+            }
         }
     }
     func connectionInterruption(){
+        let alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
+        alert.show()
+        activityIndicator.stopAnimating()
+        self.view.userInteractionEnabled = true
+        self.view.alpha = 1.0
         
+
+ 
     }
 
 }

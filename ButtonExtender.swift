@@ -2,7 +2,7 @@
 //  ButtonExtender.swift
 //  RunnerApp
 //
-//  Created by Ashkan Neshagaran on 11/12/15.
+//  Created by Tarun Sachdeva on 11/12/15.
 //  Copyright © 2015 Tarun Sachdeva. All rights reserved.
 //
 

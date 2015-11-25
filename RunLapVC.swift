@@ -7,8 +7,9 @@ Prescott | Neshagaran
 */
 
 import UIKit
+import iAd
 
-class RunLapVC: UIViewController,JsonDelegete {
+class RunLapVC: UIViewController,JsonDelegete,ADBannerViewDelegate {
     
     /** This is the NSMutableArray Object which holds the list of all runners who take part in the Run */
     var runnerListArray: NSMutableArray = NSMutableArray()
@@ -42,6 +43,7 @@ class RunLapVC: UIViewController,JsonDelegete {
     var minutes:Int = 0
     var hours:Int = 0
     
+    @IBOutlet var adBannerView: ADBannerView!
     
     var timer:CADisplayLink = CADisplayLink()
    
@@ -58,6 +60,11 @@ class RunLapVC: UIViewController,JsonDelegete {
         saveRecordBtn.layer.cornerRadius = 4.0
         self.addLoadingIndicator(view)
         numberOfLaps = Int(runDetailDict.valueForKey("lapCount") as! String )!
+        
+        self.canDisplayBannerAds = true
+        self.adBannerView.delegate = self
+        self.adBannerView.hidden = true //hide until ad loaded
+        
         
         // Do any additional setup after loading the view.
     }
@@ -107,7 +114,7 @@ class RunLapVC: UIViewController,JsonDelegete {
         
         //Set Name of Runner on Cell
         cell.nameLbl.text = String(format: "%@", runnerListArray.objectAtIndex(indexPath.row).valueForKey("first_name") as! String )
-        cell.runnerId.setString(String(format: "%d", runnerListArray.objectAtIndex(indexPath.row).valueForKey("id") as! Int))
+        cell.runnerId.setString(String(format: "%@", runnerListArray.objectAtIndex(indexPath.row).valueForKey("id") as! String))
       
         return cell
     }
@@ -117,11 +124,6 @@ class RunLapVC: UIViewController,JsonDelegete {
         let cell = tableView.cellForRowAtIndexPath(indexPath)! as! RunLapCell
         
         cell.cellTapCount++
-        
-        print(cell.nameLbl.text)
-        print(cell.cellTapCount)
-        
-        
         
         var lapCount:Int = 0
         lapCount = count - cell.totalTimeCount
@@ -138,7 +140,6 @@ class RunLapVC: UIViewController,JsonDelegete {
         }
         
         cell.totalTimeCount = count
-        
         
         let timeString:NSMutableString = NSMutableString()
         timeString.setString(hoursLbl.text!)
@@ -171,6 +172,7 @@ class RunLapVC: UIViewController,JsonDelegete {
     */
     @IBAction func startRunClicked(sender : AnyObject)
     {
+        tapToRun.enabled = false
        runStartTblView.userInteractionEnabled = true
        secondsLbl.text = String(format: "%@", "01")
        runTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector:"update", userInfo:nil, repeats: true)
@@ -186,15 +188,18 @@ class RunLapVC: UIViewController,JsonDelegete {
         let data = NSMutableDictionary()
         let runDetail = NSMutableDictionary()
         let tempRunnersArray:NSMutableArray = NSMutableArray()
+        tapToRun.enabled = true
+
         
+        let coach_id: String! = NSUserDefaults.standardUserDefaults().valueForKey("user_id") as! String
+       // let user_id = NSUserDefaults.standardUserDefaults().valueForKey("user_id")
         
-        let coach_id: String! = NSUserDefaults.standardUserDefaults().valueForKey("coach_id") as! String
         runDetail.setValue("not available", forKey: "run_id")
         runDetail.setValue(runDetailDict.valueForKey("runName"), forKey: "name")
         runDetail.setValue(runDetailDict.valueForKey("runLength"), forKey: "length")
         runDetail.setValue(runDetailDict.valueForKey("weatherCondition"), forKey: "weather")
-        runDetail.setValue(runDetailDict.valueForKey("temprature"), forKey: "temprature")
-        runDetail.setValue(runDetailDict.valueForKey("lapCount"), forKey: "lap")
+        runDetail.setValue(runDetailDict.valueForKey("temprature"), forKey: "temperature")
+        runDetail.setValue(runDetailDict.valueForKey("lapCount"), forKey: "lap_count")
         runDetail.setValue(coach_id, forKey: "coach_id")
         
         for (var i = 0 ; i < runnerListArray.count ; i++ )
@@ -208,7 +213,8 @@ class RunLapVC: UIViewController,JsonDelegete {
             let lapTime = tempLapRecord.valueForKey(String(format: "lap%d",lapCount) as String)
                 let runnnerDetail = NSMutableDictionary()
                 runnnerDetail.setValue("not available", forKey: "run_id")
-                runnnerDetail.setValue(cell.runnerId, forKey: "runner_id")
+                runnnerDetail.setValue(coach_id, forKey: "runner_id")
+              //  runnnerDetail.setValue(cell.runnerId, forKey: "runner_id")
                 runnnerDetail.setValue(lapTime, forKey: "time")
                 runnnerDetail.setValue(String(format: "%d", lapCount), forKey: "lap")
                 tempRunnersArray.addObject(runnnerDetail)
@@ -220,6 +226,9 @@ class RunLapVC: UIViewController,JsonDelegete {
         print(dataToSend)
         //Call API to save Run Record on Server
         jsonParsing.loadData("POST", url:AddRunApi , isHeader: true,throughAccessToken : false,dataToSend : dataToSend as String,sendData : true)
+        self.view.userInteractionEnabled = false
+        self.view.alpha = 0.7
+
         jsonParsing.jpdelegate = self
         dataFetchingCase = ApiResponseValue.AddRunApiCalled.rawValue
         activityIndicator.startAnimating()
@@ -272,6 +281,9 @@ class RunLapVC: UIViewController,JsonDelegete {
         
         let isSuccess : Int = 1
         activityIndicator.stopAnimating()
+        self.view.userInteractionEnabled = true
+        self.view.alpha = 1.0
+
         if (dataFetchingCase == ApiResponseValue.AddRunApiCalled.rawValue){
             if ((jsonParsing.fetchedJsonResult["success"] as! Int)  == isSuccess )  //test if we get response successfully.
             {
@@ -290,17 +302,53 @@ class RunLapVC: UIViewController,JsonDelegete {
                 self.navigationController?.pushViewController(homeVC, animated: true)
             }
             else{
-             
+                
+                
+                
+
             }
             
         }
     }
     /** This is the Delegete Method of NSURLConnection Class,and get called when we there is some problem in data receiving */
     func connectionInterruption(){
+        let alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
+        alert.show()
+        activityIndicator.stopAnimating()
+        self.view.userInteractionEnabled = true
+        self.view.alpha = 1.0
+
+  
+    }
+    
+     // MARK: - iAD Banner View
+    func bannerViewWillLoadAd(banner: ADBannerView!) {
+        NSLog("bannerViewWillLoadAd")
+    }
+    
+    func bannerViewDidLoadAd(banner: ADBannerView!) {
+        NSLog("bannerViewDidLoadAd")
+        self.adBannerView.hidden = false //now show banner as ad is loaded
+    }
+    
+    func bannerViewActionDidFinish(banner: ADBannerView!) {
+        NSLog("bannerViewDidLoadAd")
+        
+        //optional resume paused game code
         
     }
     
+    func bannerViewActionShouldBegin(banner: ADBannerView!, willLeaveApplication willLeave: Bool) -> Bool {
+        NSLog("bannerViewActionShouldBegin")
+        
+        //optional pause game code
+        
+        return true
+    }
     
+    func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!) {
+        NSLog("bannerView")
+    }
     
 
     /*

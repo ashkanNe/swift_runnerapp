@@ -33,6 +33,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSUserDefaults.standardUserDefaults().setValue("true", forKey: "logout")
             NSUserDefaults.standardUserDefaults().synchronize()
         }
+        if(NSUserDefaults.standardUserDefaults().valueForKey("coach_name") == nil )
+        {
+            NSUserDefaults.standardUserDefaults().setValue("N.A", forKey: "coach_name")
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
+        if(NSUserDefaults.standardUserDefaults().valueForKey("coach_team") == nil )
+        {
+            NSUserDefaults.standardUserDefaults().setValue("N.A", forKey: "coach_team")
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
         
         if((NSUserDefaults.standardUserDefaults().valueForKey("logout")) as? NSString == "true")
         {

@@ -11,7 +11,7 @@ import Foundation
 
 
 
-let baseUrl = "http://runnerappusa.azurewebsites.net/api/web/index.php/v1/" // developmentURL
+let baseUrl = "https://runnerappusa.azurewebsites.net/api/web/index.php/v1/" // developmentURL
 
 //let baseUrl = "http://oips.org/runnerapp/api/web/v1/" // developmentURL
 //let baseUrl = "http://status.keyss.in/app/api/web/v1/" // liveURL

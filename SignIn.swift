@@ -51,8 +51,8 @@ class SignIn: UIViewController,UITextFieldDelegate,JsonDelegete {
         addLoadingIndicator(self.view)
         self.addBottomLayer(userNameTF)
         self.addBottomLayer(passwordTF)
-        self.addBottomLayer(forgotPasswdBtn)
-        self.addBottomLayer(signUpBtn)
+      //  self.addBottomLayer(forgotPasswdBtn)
+      //  self.addBottomLayer(signUpBtn)
         msgLblShow.layer.masksToBounds = true
         msgLblShow.layer.cornerRadius = 4.0
         loginBtn.layer.cornerRadius = 4.0
@@ -134,7 +134,8 @@ class SignIn: UIViewController,UITextFieldDelegate,JsonDelegete {
         NSUserDefaults.standardUserDefaults().setValue(passwordTF.text, forKey: "password")
             //Save username permanently for future access
         NSUserDefaults.standardUserDefaults().synchronize()
-        
+        self.view.alpha = 0.7
+        self.view.userInteractionEnabled = false
             //Call API to Login inti o the application
         jsonParsing.loadData("POST", url: LoginApi, isHeader: true,throughAccessToken : false,dataToSend : dataToSend as String,sendData : true)
         jsonParsing.jpdelegate = self
@@ -148,7 +149,6 @@ class SignIn: UIViewController,UITextFieldDelegate,JsonDelegete {
         let emailTest : NSPredicate = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluateWithObject(testStr)
     }
-
     //MARK: - UITextField Delegete Methods
     func textFieldDidBeginEditing(textField: UITextField)
     {
@@ -166,12 +166,23 @@ class SignIn: UIViewController,UITextFieldDelegate,JsonDelegete {
             self.viewMoveDown(60.0)
         }
     }
+//    func textField(textField: UITextField,shouldChangeCharactersInRange range: NSRange,replacementString string: String)
+//        -> Bool
+//    {
+//        if userNameTF.text!.isEmpty ||  passwordTF.text!.isEmpty {
+//            loginBtn.titleLabel?.textColor = UIColor(red: 170.0/255.0, green: 170.0/255.0, blue: 170.0/255.0, alpha: 1.0)
+//        }
+//        else
+//        {
+//            loginBtn.titleLabel?.textColor = UIColor.whiteColor()
+//        }
+//        return true
+//    }
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
         textField.resignFirstResponder()
         return true
     }
-    
     //MARK:- UIView Animation Methods
     /** This method is used to Up the View when user press on any UITextField */
     func viewMoveUp(value:CGFloat){
@@ -203,8 +214,14 @@ class SignIn: UIViewController,UITextFieldDelegate,JsonDelegete {
     func dataFound(){
         let isSuccess : Int = 1
         activityIndicator.stopAnimating()
+        self.view.userInteractionEnabled = true
+        self.view.alpha = 1.0
         if ((jsonParsing.fetchedJsonResult["success"] as! Int)  == isSuccess ) //test if get response from server successfully.
         {
+            userNameTF.resignFirstResponder()
+            passwordTF.resignFirstResponder()
+           
+            
             let access_token: NSString? = jsonParsing.fetchedDataArray.objectAtIndex(0)["access_token"] as? String
             
             let coach_id: Int? = jsonParsing.fetchedDataArray.objectAtIndex(0)["id"] as? Int
@@ -220,6 +237,7 @@ class SignIn: UIViewController,UITextFieldDelegate,JsonDelegete {
             NSUserDefaults.standardUserDefaults().setValue(user_email, forKey: "email_id")
             NSUserDefaults.standardUserDefaults().synchronize()
             
+                       
             let homeVC:UIViewController = self.storyboard?.instantiateViewControllerWithIdentifier("HomeScreen") as UIViewController!
             self.navigationController?.pushViewController(homeVC, animated: true)
         }
@@ -231,7 +249,13 @@ class SignIn: UIViewController,UITextFieldDelegate,JsonDelegete {
     }
     /** This is the Delegete Method of NSURLConnection Class,and get called when we there is some problem in data receiving */
     func connectionInterruption(){
-        
+        let alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
+        alert.show()
+        activityIndicator.stopAnimating()
+        self.view.userInteractionEnabled = true
+        self.view.alpha = 1.0
+
+
     }
 
     /*

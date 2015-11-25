@@ -15,7 +15,8 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate,UIPickerViewD
     @IBOutlet var heightTF : UITextField!
     @IBOutlet var weightTF : UITextField!
     @IBOutlet var ageTF : UITextField!
- 
+    
+    var firstView:Int = 0
     
     /** This is the UILabel Object which is used to show alert message */
     @IBOutlet var alertMsgLbl : UILabel!
@@ -97,6 +98,7 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate,UIPickerViewD
             weightValueArray.addObject(String(format: "%d",weightValue))
         }
         
+        firstView = 0
         
         super.viewDidLoad()
     }
@@ -109,10 +111,18 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate,UIPickerViewD
     override func viewWillAppear(animated: Bool) {
         
         //Call API to get updated list of Runner from Server.
+        
+        if (firstView != 0)
+        {
         jsonParsing.loadData("GET", url: RunnerListApi, isHeader: true,throughAccessToken : false,dataToSend : dataToSend as String,sendData : true)
         jsonParsing.jpdelegate = self
+        self.view.userInteractionEnabled = false
+        self.view.alpha = 0.7
+
         dataFetchingCase = ApiResponseValue.InitializeRunnerScreen.rawValue
         activityIndicator.startAnimating()
+        }
+        firstView = 1
         super.viewWillAppear(animated)
     }
     
@@ -137,6 +147,9 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate,UIPickerViewD
             jsonParsing.jpdelegate = self
             dataFetchingCase = ApiResponseValue.RunnerListApiCalled.rawValue
             activityIndicator.startAnimating()
+            self.view.userInteractionEnabled = false
+            self.view.alpha = 0.7
+
             alertMsgLbl.text = "Select Runner to remove."
             addRunnerView.hidden = true
             removeRunnerView.hidden = true
@@ -149,6 +162,9 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate,UIPickerViewD
             //Call API to get updated list of Runner from Server.
             jsonParsing.loadData("GET", url: RunnerListApi, isHeader: true,throughAccessToken : false,dataToSend : dataToSend as String,sendData : true)
             jsonParsing.jpdelegate = self
+            self.view.userInteractionEnabled = false
+            self.view.alpha = 0.7
+
             dataFetchingCase = ApiResponseValue.RunnerListApiCalled.rawValue
             activityIndicator.startAnimating()
             alertMsgLbl.text = "Select Any Runner to Edit."
@@ -241,6 +257,7 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate,UIPickerViewD
             let firstChar:Character =   firstNameTF.text![firstIndex]
             let secondChar:Character = LastNameTF.text![firstIndex]
             let intials:String = addCharcters(firstChar, last: secondChar)
+            let user_id = NSUserDefaults.standardUserDefaults().valueForKey("user_id")
             
             let data = NSMutableDictionary()     //Data to send along with API
             data.setValue("not available", forKey: "userid")
@@ -256,7 +273,7 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate,UIPickerViewD
             data.setValue("not available", forKey: "school")
             data.setValue("not available", forKey: "team")
             data.setValue("2", forKey: "role")
-            data.setValue("not available", forKey: "coach_id")
+            data.setValue(user_id, forKey: "coach_id")
             data.setValue("not available", forKey: "coach_name")
             data.setValue(intials, forKey: "intials")
             data.setValue("not available", forKey: "access_token")
@@ -266,6 +283,11 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate,UIPickerViewD
             print(dataToSend)
             //Call API to save runner information on the server.
             jsonParsing.loadData("POST", url: SignUpApi, isHeader: true,throughAccessToken : false,dataToSend : dataToSend as String,sendData : true)
+            
+            self.view.userInteractionEnabled = false
+            self.view.alpha = 0.7
+
+            
             jsonParsing.jpdelegate = self
             dataFetchingCase = ApiResponseValue.AddRunnerApiCalled.rawValue
             activityIndicator.startAnimating()
@@ -333,6 +355,47 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate,UIPickerViewD
             self.navigationController?.pushViewController(editVC, animated: true)
         }
     }
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+            return true
+    }
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
+    {
+        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+            // handle delete (by removing the data from your array and updating the tableview)
+        }
+    }
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]?  {
+        // 1
+        let editAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Edit" , handler: { (action:UITableViewRowAction, indexPath:NSIndexPath) -> Void in
+           // self.editTaskAcn(indexPath.row)
+            
+        })
+        // 3
+        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete" , handler: { (action:UITableViewRowAction, indexPath:NSIndexPath) -> Void in
+            // 4
+            let deleteMenu = UIAlertController(title: nil, message: "Do u really want to delete", preferredStyle: .ActionSheet)
+            
+            let deleteYesAction = UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction) -> Void in
+                
+              //  self.deleteTaskAcn(indexPath.row)
+                
+            })
+            let deleteNoAction = UIAlertAction(title: "No", style: UIAlertActionStyle.Cancel, handler: nil)
+            //    let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+            
+            deleteMenu.addAction(deleteYesAction)
+            deleteMenu.addAction(deleteNoAction)
+            //   deleteMenu.addAction(cancelAction)
+            
+            
+            self.presentViewController(deleteMenu, animated: true, completion: nil)
+        })
+        editAction.backgroundColor = UIColor(red : 1/255, green: 161/255, blue: 219/255, alpha: 1.0)
+        deleteAction.backgroundColor = UIColor(red : 1/255, green: 161/255, blue: 219/255, alpha: 1.0)
+        
+        return [editAction,deleteAction]
+    }
+    
     //MARK: - Prepare For Segue Method
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
@@ -347,8 +410,12 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate,UIPickerViewD
             break;
         case 0:
             //Call API to remove runner from server.
-            let data : String = String(format:"id=%d?", selectedRunnerDict.objectForKey("id") as! Int)
+            print(selectedRunnerDict)
+            let data : String = String(format:"id=%@?", selectedRunnerDict.objectForKey("id") as! String)
             jsonParsing.loadData("POST", url: RemoveRunnerApi + data, isHeader: true,throughAccessToken : false,dataToSend : dataToSend as String,sendData : true)
+            self.view.userInteractionEnabled = false
+            self.view.alpha = 0.7
+
             jsonParsing.jpdelegate = self
             dataFetchingCase = ApiResponseValue.RemoveRunnerApiCalled.rawValue
             activityIndicator.startAnimating()
@@ -477,6 +544,9 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate,UIPickerViewD
     func dataFound(){
         let isSuccess : Int = 1
         activityIndicator.stopAnimating()
+        self.view.userInteractionEnabled = true
+        self.view.alpha = 1.0
+
         
         if(dataFetchingCase == ApiResponseValue.RunnerListApiCalled.rawValue)        //test for dataFecthing Case.
         {
@@ -489,6 +559,15 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate,UIPickerViewD
                 runnerListArray.addObjectsFromArray(tempArray.filteredArrayUsingPredicate(predicate))
                 removeRunnerView.hidden = false
                 allRunnerTblView.reloadData()
+            }
+            else
+            {
+                if (jsonParsing.fetchedJsonResult.valueForKey("data")!.valueForKey("message")!.isEqualToString("No record found!"))
+                {
+                  runnerListArray.removeAllObjects()
+                  removeRunnerView.hidden = false
+                  allRunnerTblView.reloadData()
+                }
             }
         }
         else if(dataFetchingCase == ApiResponseValue.AddRunnerApiCalled.rawValue)
@@ -534,7 +613,13 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate,UIPickerViewD
     }
     /** This is the Delegete Method of NSURLConnection Class,and get called when we there is some problem in data receiving */
     func connectionInterruption(){
-        
+        let alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
+        alert.show()
+        activityIndicator.stopAnimating()
+        self.view.userInteractionEnabled = true
+        self.view.alpha = 1.0
+
+ 
     }
     
     func addPickerView(textField:UITextField)

@@ -178,6 +178,9 @@ class StartRun: UIViewController,JsonDelegete {
             
             //Call API to get updated list of all runners
             jsonParsing.loadData("GET", url: RunnerListApi, isHeader: true,throughAccessToken : false,dataToSend : dataToSend as String,sendData : true)
+            self.view.userInteractionEnabled = false
+            self.view.alpha = 0.7
+
             jsonParsing.jpdelegate = self
             dataFetchingCase = ApiResponseValue.RunnerListApiCalled.rawValue
             activityIndicator.startAnimating()
@@ -261,6 +264,9 @@ class StartRun: UIViewController,JsonDelegete {
     func dataFound(){
         let isSuccess : Int = 1
         activityIndicator.stopAnimating()
+        self.view.userInteractionEnabled = true
+        self.view.alpha = 1.0
+
         if ((jsonParsing.fetchedJsonResult["success"] as! Int)  == isSuccess )  //test if we get response successfully.
         {
             var tempArray:NSArray = NSArray()
@@ -273,13 +279,23 @@ class StartRun: UIViewController,JsonDelegete {
             self.navigationController?.pushViewController(selectRunnerVC, animated: true)
         }
         else{
-            msgLblShow.text = "There is a problem,Please try later."
-            self.errorLblShow()
+            if(jsonParsing.fetchedJsonResult["data"]?.count > 0){
+                let message = jsonParsing.fetchedJsonResult.valueForKey("data")?.valueForKey("message") as! String
+                let alert = UIAlertView(title: "Alert", message: message, delegate: nil, cancelButtonTitle: "OK")
+                alert.show()
+                activityIndicator.stopAnimating()
+                self.view.userInteractionEnabled = true
+                self.view.alpha = 1.0
+            }
         }
     }
     /** This is the Delegete Method of NSURLConnection Class,and get called when we there is some problem in data receiving */
     func connectionInterruption(){
-        
+        let alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
+        alert.show()
+        activityIndicator.stopAnimating()
+        self.view.userInteractionEnabled = true
+        self.view.alpha = 1.0
     }
     /*
     // MARK: - Navigation

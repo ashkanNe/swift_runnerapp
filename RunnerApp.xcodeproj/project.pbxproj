@@ -42,6 +42,9 @@
 		44C5028B1BB7A735002ABF83 /* AddRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C5028A1BB7A735002ABF83 /* AddRunner.swift */; };
 		44C502911BB83CB7002ABF83 /* RunLapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C502901BB83CB7002ABF83 /* RunLapVC.swift */; };
 		44E244121BF826D900D7DF1E /* ForgotPasswdVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E244111BF826D900D7DF1E /* ForgotPasswdVC.swift */; settings = {ASSET_TAGS = (); }; };
+		44E41A241C0050220005AA7C /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44E41A231C0050220005AA7C /* iAd.framework */; };
+		44E41A261C005DE60005AA7C /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E41A251C005DE60005AA7C /* Reachability.swift */; settings = {ASSET_TAGS = (); }; };
+		44E41A281C005F060005AA7C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44E41A271C005F060005AA7C /* SystemConfiguration.framework */; };
 		44ECD45F1BF4D9210072048B /* ButtonExtender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44ECD45E1BF4D9210072048B /* ButtonExtender.swift */; settings = {ASSET_TAGS = (); }; };
 		44ECD4611BF4D96C0072048B /* TextFieldExtender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44ECD4601BF4D96C0072048B /* TextFieldExtender.swift */; settings = {ASSET_TAGS = (); }; };
 		60B226AA1BEC304900D88B65 /* license.md in Sources */ = {isa = PBXBuildFile; fileRef = 60B226A91BEC304900D88B65 /* license.md */; };
@@ -105,6 +108,9 @@
 		44C5028A1BB7A735002ABF83 /* AddRunner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AddRunner.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		44C502901BB83CB7002ABF83 /* RunLapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = RunLapVC.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		44E244111BF826D900D7DF1E /* ForgotPasswdVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswdVC.swift; sourceTree = "<group>"; };
+		44E41A231C0050220005AA7C /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		44E41A251C005DE60005AA7C /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		44E41A271C005F060005AA7C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		44ECD45E1BF4D9210072048B /* ButtonExtender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonExtender.swift; sourceTree = "<group>"; };
 		44ECD4601BF4D96C0072048B /* TextFieldExtender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldExtender.swift; sourceTree = "<group>"; };
 		60B226A91BEC304900D88B65 /* license.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = license.md; sourceTree = "<group>"; };
@@ -116,6 +122,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44E41A281C005F060005AA7C /* SystemConfiguration.framework in Frameworks */,
+				44E41A241C0050220005AA7C /* iAd.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +140,9 @@
 		442B75301BAA5F3D00FF4E0E = {
 			isa = PBXGroup;
 			children = (
+				44E41A271C005F060005AA7C /* SystemConfiguration.framework */,
+				44E41A251C005DE60005AA7C /* Reachability.swift */,
+				44E41A231C0050220005AA7C /* iAd.framework */,
 				60B226A91BEC304900D88B65 /* license.md */,
 				4495D2E61BB66589005D5662 /* loading.png */,
 				4495D2E41BB6653B005D5662 /* CustomActivityIndicatorView.swift */,
@@ -366,6 +377,7 @@
 				44C502911BB83CB7002ABF83 /* RunLapVC.swift in Sources */,
 				4495D2EF1BB6A06B005D5662 /* SelectRunnerVC.swift in Sources */,
 				4495D2DA1BB64A20005D5662 /* JsonParsing.swift in Sources */,
+				44E41A261C005DE60005AA7C /* Reachability.swift in Sources */,
 				44BF4D991BBEE35000914056 /* EditRunnerVC.swift in Sources */,
 				4495D2E51BB6653B005D5662 /* CustomActivityIndicatorView.swift in Sources */,
 				44C404F01BBE91310079F5C0 /* RunnerStatsVC.swift in Sources */,

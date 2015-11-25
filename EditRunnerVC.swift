@@ -53,7 +53,7 @@ class EditRunnerVC: UIViewController,JsonDelegete,UIPickerViewDataSource,UIPicke
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         
+         print(dataReceived)
             
         self.navigationItem.title = "Edit Runner"
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
@@ -62,7 +62,7 @@ class EditRunnerVC: UIViewController,JsonDelegete,UIPickerViewDataSource,UIPicke
         LastNameTF.text = String(format: "%@", dataReceived.objectForKey("last_name") as! String)
         heightTF.text = String(format: "%@", dataReceived.objectForKey("height") as! String)
         weightTF.text = String(format: "%@", dataReceived.objectForKey("weight") as! String)
-        ageTF.text = String(format: "%d", dataReceived.objectForKey("age") as! Int)
+        ageTF.text = String(format: "%@", dataReceived.objectForKey("age") as! String)
         
         //Add Custom Indicator on View.
         self.addLoadingIndicator(view)
@@ -145,6 +145,9 @@ class EditRunnerVC: UIViewController,JsonDelegete,UIPickerViewDataSource,UIPicke
         //Call API to send updated information on the server.
             let tempData : String = String(format:"id=%d", dataReceived.objectForKey("id") as! Int)
             jsonParsing.loadData("POST", url: EditRunnerApi + tempData , isHeader: true,throughAccessToken : false,dataToSend : dataToSend as String,sendData : true)
+            self.view.userInteractionEnabled = false
+            self.view.alpha = 0.7
+
             jsonParsing.jpdelegate = self
             dataFetchingCase = ApiResponseValue.EditRunnerApiCalled.rawValue
             activityIndicator.startAnimating()
@@ -330,6 +333,9 @@ class EditRunnerVC: UIViewController,JsonDelegete,UIPickerViewDataSource,UIPicke
         
         let isSuccess : Int = 1
         activityIndicator.stopAnimating()
+        self.view.userInteractionEnabled = true
+        self.view.alpha = 1.0
+
         if (dataFetchingCase == ApiResponseValue.EditRunnerApiCalled.rawValue){
             if ((jsonParsing.fetchedJsonResult["success"] as! Int)  == isSuccess ) //test if we get response successfully.
             {
@@ -344,7 +350,13 @@ class EditRunnerVC: UIViewController,JsonDelegete,UIPickerViewDataSource,UIPicke
     
    /** This is the Delegete Method of NSURLConnection Class,and get called when there is some problem in data receiving */
     func connectionInterruption(){
-        
+        let alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
+        alert.show()
+        activityIndicator.stopAnimating()
+        self.view.userInteractionEnabled = true
+        self.view.alpha = 1.0
+
+ 
     }
 
     func addPickerView(textField:UITextField)

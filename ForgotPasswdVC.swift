@@ -74,6 +74,9 @@ class ForgotPasswdVC: UIViewController,JsonDelegete {
         dataToSend  = data.JSONRepresentation()  //Change data in Json Format
         jsonParsing.loadData("POST", url: ForgetPasswordApi  , isHeader: true,throughAccessToken : false,dataToSend : dataToSend as String,sendData : true)
         print(dataToSend)
+            self.view.userInteractionEnabled = false
+            self.view.alpha = 0.7
+
         jsonParsing.jpdelegate = self
         dataFetchingCase = ApiResponseValue.ForgetPasswordApiCalled.rawValue
         activityIndicator.startAnimating()
@@ -109,7 +112,10 @@ class ForgotPasswdVC: UIViewController,JsonDelegete {
         
         let isSuccess : Int = 1
         activityIndicator.stopAnimating()
-        if (dataFetchingCase == ApiResponseValue.EditRunnerApiCalled.rawValue){
+        self.view.userInteractionEnabled = true
+        self.view.alpha = 1.0
+
+        if (dataFetchingCase == ApiResponseValue.ForgetPasswordApiCalled.rawValue){
             if ((jsonParsing.fetchedJsonResult["success"] as! Int)  == isSuccess ) //test if we get response successfully.
             {
                 let mailSentAlert: UIAlertView = UIAlertView()
@@ -129,7 +135,13 @@ class ForgotPasswdVC: UIViewController,JsonDelegete {
     
     /** This is the Delegete Method of NSURLConnection Class,and get called when there is some problem in data receiving */
     func connectionInterruption(){
-        
+        let alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
+        alert.show()
+        activityIndicator.stopAnimating()
+        self.view.userInteractionEnabled = true
+        self.view.alpha = 1.0
+
+
     }
     
     override func didReceiveMemoryWarning() {
