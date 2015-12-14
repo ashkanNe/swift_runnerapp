@@ -1,7 +1,10 @@
 /**
 ￼@class RunLapVC.swift
 ￼This file is used to count the time each runner takes to complete the run.
-We have a list of Runners who take part in run. We tap on the "Tap To Start" button to start the time. When a Runner completes his or her run, tap on particular runner name, his or her time will be recorded. After all runners complete the run, press "Save Record" button to save data on Server.
+We have a list of the runners who take part in each run. We tap on the "Tap To Start" button to start the timer. When a Runner completes his or her run, tap on that particular runners name, his or her time will be recorded. After all runners complete the run, press "Save Record" button upload the data to the Azure.
+ 
+ --Ashkan
+ 
 Prescott | Neshagaran
 @Copyright (c) 2015 Prescott | Neshagaran. All rights reserved.
 */
@@ -17,7 +20,7 @@ class RunLapVC: UIViewController,JsonDelegete,ADBannerViewDelegate {
    /** This is the NSMutableDictionary Object which holds the information about the Run */
     var runDetailDict: NSMutableDictionary = NSMutableDictionary()
     
-    var timeDetailDict: NSMutableDictionary = NSMutableDictionary()
+    var timeDetailDict: ßNSMutableDictionary = NSMutableDictionary()
     
     
     @IBOutlet var runStartTblView : UITableView!
