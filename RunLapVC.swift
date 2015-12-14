@@ -2,7 +2,7 @@
 ￼@class RunLapVC.swift
 ￼This file is used to count the time each runner takes to complete the run.
 We have a list of the runners who take part in each run. We tap on the "Tap To Start" button to start the timer. When a Runner completes his or her run, tap on that particular runners name, his or her time will be recorded. After all runners complete the run, press "Save Record" button upload the data to the Azure.
- 
+  
  --Ashkan
  
 Prescott | Neshagaran
