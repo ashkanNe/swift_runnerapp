@@ -225,30 +225,30 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate,UIPickerViewD
         //validate that no field should be empty
         if firstNameTF.text == ""
         {
-            msgLblShow.text = "Please enter first name."
+            msgLblShow.text = "Please enter a first name."
             self.errorLblShow()
             
         }
         else if LastNameTF.text == ""
         {
-            msgLblShow.text = "Please enter last name."
+            msgLblShow.text = "Please enter a last name."
             self.errorLblShow()
             
         }
         else if heightTF.text == ""
         {
-            msgLblShow.text = "Please enter height"
+            msgLblShow.text = "Please enter a height"
             self.errorLblShow()
             
         }
         else if weightTF.text == ""
         {
-            msgLblShow.text = "Please enter weight"
+            msgLblShow.text = "Please enter a weight"
             self.errorLblShow()
         }
         else if weightTF.text == ""
         {
-            msgLblShow.text = "Please enter age"
+            msgLblShow.text = "Please enter an age"
             self.errorLblShow()
         }
         else
@@ -294,7 +294,7 @@ class AddRunner: UIViewController,JsonDelegete,UIAlertViewDelegate,UIPickerViewD
         }
     }
     
-    //MARK: - Obtain Initials from Name Methods
+    //MARK: - Obtain Initials from Kickass Methods
     func addCharcters (first:Character, last:Character) -> String {
     return "\(first)\(last)"
     }

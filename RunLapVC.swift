@@ -20,7 +20,7 @@ class RunLapVC: UIViewController,JsonDelegete,ADBannerViewDelegate {
    /** This is the NSMutableDictionary Object which holds the information about the Run */
     var runDetailDict: NSMutableDictionary = NSMutableDictionary()
     
-    var timeDetailDict: ßNSMutableDictionary = NSMutableDictionary()
+    var timeDetailDict: NSMutableDictionary = NSMutableDictionary()
     
     
     @IBOutlet var runStartTblView : UITableView!
@@ -161,9 +161,9 @@ class RunLapVC: UIViewController,JsonDelegete,ADBannerViewDelegate {
         if runClearedCount == runnerListArray.count {        //saveRecordBtn enable when each runner completes the run.
             let runCompleteAlert: UIAlertView = UIAlertView()
             runCompleteAlert.delegate = self
-            runCompleteAlert.title = "Congratulation"
-            runCompleteAlert.message = "All Runner completes the Run."
-            runCompleteAlert.addButtonWithTitle("Ok")
+            runCompleteAlert.title = "Congratulations"
+            runCompleteAlert.message = "All your runners have completed their laps."
+            runCompleteAlert.addButtonWithTitle("Activate Save Button")
             runCompleteAlert.show()
             saveRecordBtn.userInteractionEnabled = true
             runTimer.invalidate()
