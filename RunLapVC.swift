@@ -1,7 +1,10 @@
 /**
 ￼@class RunLapVC.swift
 ￼This file is used to count the time each runner takes to complete the run.
-We have a list of Runners who take part in run. We tap on the "Tap To Start" button to start the time. When a Runner completes his or her run, tap on particular runner name, his or her time will be recorded. After all runners complete the run, press "Save Record" button to save data on Server.
+We have a list of the runners who take part in each run. We tap on the "Tap To Start" button to start the timer. When a Runner completes his or her run, tap on that particular runners name, his or her time will be recorded. After all runners complete the run, press "Save Record" button upload the data to the Azure.
+  
+ --Ashkan
+ 
 Prescott | Neshagaran
 @Copyright (c) 2015 Prescott | Neshagaran. All rights reserved.
 */
@@ -158,9 +161,9 @@ class RunLapVC: UIViewController,JsonDelegete,ADBannerViewDelegate {
         if runClearedCount == runnerListArray.count {        //saveRecordBtn enable when each runner completes the run.
             let runCompleteAlert: UIAlertView = UIAlertView()
             runCompleteAlert.delegate = self
-            runCompleteAlert.title = "Congratulation"
-            runCompleteAlert.message = "All Runner completes the Run."
-            runCompleteAlert.addButtonWithTitle("Ok")
+            runCompleteAlert.title = "Congratulations"
+            runCompleteAlert.message = "All your runners have completed their laps."
+            runCompleteAlert.addButtonWithTitle("Activate Save Button")
             runCompleteAlert.show()
             saveRecordBtn.userInteractionEnabled = true
             runTimer.invalidate()
